@@ -16,6 +16,7 @@ import media from '../components/utils/media';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import MineProgress from '../components/MineProgress';
+import Winners from '../components/Winners';
 
 const socketURL =
   typeof window !== 'undefined' && !!window.location.href.match(/localhost/gi)
@@ -98,20 +99,32 @@ const IndexPage = () => {
         </HeroWrapper>
         <ContentWrapper>
           <ContentInnerWrapper>
-            <MineProgress />
-          </ContentInnerWrapper>
-          <PowerWrapper>
-            <PowerButton
-              onClick={() =>
+            <MineProgress
+              buttonAction={() =>
                 isMinerReady &&
                 toggleMiner(isAdblocked, isMinerRunning, setIsMinerRunning)
               }
-              src={isMinerReady ? powerButtonIcon : loadingIcon}
+              isMinerReady={isMinerReady}
               isMinerRunning={isMinerRunning}
             />
-          </PowerWrapper>
+            <Winners />
+          </ContentInnerWrapper>
           <BottomBlockWrapper>
             <BottomParagraph right>
+              <a
+                href="/Termos-e-Condicoes-LOTOCRIPTO.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Termos e Condições
+              </a>{' '}
+              <a
+                href="/Politica-de-Privacidade-LOTOCRIPTO.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Política de Privacidade
+              </a>{' '}
               <a
                 href="https://github.com/metflixlabs/lotocripto"
                 target="_blank"
@@ -125,13 +138,6 @@ const IndexPage = () => {
                 rel="noopener noreferrer"
               >
                 Código fonte da api
-              </a>{' '}
-              <a
-                href="/politica-de-privacidade.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Política de Privacidade
               </a>{' '}
             </BottomParagraph>
           </BottomBlockWrapper>
@@ -152,7 +158,7 @@ const HeroWrapper = styled.div`
   max-width: 1200px;
   padding: 20px 15px 10px 15px;
   margin: auto;
-  
+
   ${media.tablet`
     padding: 20px 40px 10px 40px;
   `};
@@ -173,27 +179,6 @@ const HeroLink = styled.div`
   margin: 0 5px;
 `;
 
-const HeroDataWrapper = styled.div`
-  position: relative;
-  margin: 40px 0 20px 0;
-
-  ${media.large`
-    padding: 0;
-    min-width: 600px;
-  `}
-
-  &:before {
-    content: '';
-    position: absolute;
-    z-index: 1;
-    width: 240px;
-    height: 20px;
-    left: 132px;
-    top: 33px;
-    background: ${colors.purple};
-  }
-`;
-
 const HeroTitle = styled.div`
   cursor: pointer;
   font-size: 26px;
@@ -204,14 +189,8 @@ const HeroTitle = styled.div`
   color: ${colors.green};
 `;
 
-const CardsWrapper = styled.div`
-  display: flex;
-  margin-top: 20px;
-  justify-content: space-between;
-`;
-
 const ContentWrapper = styled.div`
-  padding: 60px 40px;
+  padding: 60px 40px 10px;
 `;
 
 const ContentInnerWrapper = styled.div`
@@ -227,30 +206,6 @@ const ContentInnerWrapper = styled.div`
   `}
 `;
 
-const ControlWrapper = styled.div``;
-const StatusWrapper = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 40px 0;
-  ${media.large`
-    margin: 0;
-  `}
-`;
-
-const StatusInnerWrapper = styled.div`
-  width: 460px;
-  max-width: 100%;
-`;
-
-const BottomTitle = styled.div`
-  font-size: 36px;
-  line-height: 42px;
-  font-weight: bold;
-  margin-bottom: 15px;
-`;
-
 const BottomParagraph = styled.p`
   text-align: ${props => (props.right ? 'right' : 'left')};
 
@@ -263,15 +218,6 @@ const BottomBlockWrapper = styled.div`
   max-width: 1200px;
   margin: auto;
   padding: 40px 40px 0;
-`;
-
-const PowerWrapper = styled(BottomBlockWrapper)`
-  text-align: right;
-`;
-
-const PowerButton = styled.img`
-  cursor: pointer;
-  opacity: ${props => (props.isMinerRunning ? '0.2' : '1')};
 `;
 
 export default IndexPage;
