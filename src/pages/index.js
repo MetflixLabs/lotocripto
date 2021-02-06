@@ -20,9 +20,14 @@ import Winners from '../components/Winners';
 import Signup from '../components/Signup';
 import Login from '../components/Login';
 
+// const apiUrl =
+//   typeof window !== 'undefined' && !!window.location.href.match(/localhost/gi)
+//     ? 'http://localhost:3333/api'
+//     : 'https://gretchenless-cloud.xyz/api';
+
 // const socketURL =
 //   typeof window !== 'undefined' && !!window.location.href.match(/localhost/gi)
-//     ? 'http://localhost:5000'
+//     ? 'http://localhost:3333'
 //     : 'https://gretchenless-cloud.xyz';
 
 // const socket = io.connect(socketURL, {
@@ -142,7 +147,7 @@ const IndexPage = () => {
                 Código fonte do website
               </a>{' '}
               <a
-                href="https://github.com/metflixlabs/lotocripto"
+                href="https://github.com/MetflixLabs/lotocripto-api"
                 target="_blank"
                 rel="noopener noreferrer"
               >

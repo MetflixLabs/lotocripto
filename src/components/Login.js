@@ -72,6 +72,14 @@ const LoginModal = styled(Modal)`
       background-color: ${colors.green} !important;
     }
 
+    &:disabled {
+      color: ${colors.green} !important;
+
+      &:hover {
+        color: ${colors.green} !important;
+      }
+    }
+
     &:hover {
       color: ${colors.white} !important;
     }
