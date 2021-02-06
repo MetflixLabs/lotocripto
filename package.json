@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "MetflixLabs - https://twitter.com/MetflixLabs",
   "dependencies": {
+    "@ant-design/icons": "^4.4.0",
     "antd": "^4.12.2",
     "axios": "^0.19.2",
     "gatsby": "^2.19.45",

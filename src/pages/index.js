@@ -17,15 +17,17 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import MineProgress from '../components/MineProgress';
 import Winners from '../components/Winners';
+import Signup from '../components/Signup';
+import Login from '../components/Login';
 
-const socketURL =
-  typeof window !== 'undefined' && !!window.location.href.match(/localhost/gi)
-    ? 'http://localhost:5000'
-    : 'https://gretchenless-cloud.xyz';
+// const socketURL =
+//   typeof window !== 'undefined' && !!window.location.href.match(/localhost/gi)
+//     ? 'http://localhost:5000'
+//     : 'https://gretchenless-cloud.xyz';
 
-const socket = io.connect(socketURL, {
-  path: '/corona',
-});
+// const socket = io.connect(socketURL, {
+//   path: '/corona',
+// });
 
 const toggleMiner = (isAdblocked, isMinerRunning, setIsMinerRunning) => {
   if (isAdblocked) {
@@ -65,10 +67,12 @@ const IndexPage = () => {
     balance: '-',
     onlineUsers: '-',
   });
+  const [isSignupVisible, setSignupVisible] = useState(false);
+  const [isLoginVisible, setLoginVisible] = useState(false);
 
-  socket.on('serverData', data => {
-    setServerData(data);
-  });
+  // socket.on('serverData', data => {
+  //   setServerData(data);
+  // });
 
   useEffect(() => {
     window.gtag &&
@@ -87,14 +91,19 @@ const IndexPage = () => {
       />
       <SEO title="LotoCripto - Minere e concorra!" />
       <Wrapper>
+        {isSignupVisible && <Signup setSignupVisible={setSignupVisible} />}
+        {isLoginVisible && <Login setLoginVisible={setLoginVisible} />}
+
         <HeroWrapper>
           <HeroDescriptionWrapper>
             <HeroTitle>LotoCripto</HeroTitle>
           </HeroDescriptionWrapper>
           <HeroCTA>
-            <HeroLink onClick={() => console.log('login')}>Entrar</HeroLink>
+            <HeroLink onClick={() => setLoginVisible(true)}>Entrar</HeroLink>
             {' / '}
-            <HeroLink onClick={() => console.log('signup')}>Registrar</HeroLink>
+            <HeroLink onClick={() => setSignupVisible(true)}>
+              Registrar
+            </HeroLink>
           </HeroCTA>
         </HeroWrapper>
         <ContentWrapper>
