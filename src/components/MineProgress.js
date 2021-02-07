@@ -4,6 +4,7 @@ import { Progress, Statistic, Button } from 'antd';
 import Timer from 'react-compound-timer';
 
 import colors from '../components/utils/colors';
+import media from '../components/utils/media';
 
 const { Countdown } = Statistic;
 
@@ -28,7 +29,7 @@ const MineProgress = ({
   const [isEligible, setEligible] = useState(false);
   const [eligibleTimer, setEligibleTimer] = useState(0);
   const [hashes, setHashes] = useState(0);
-  const percent = Math.floor((4.4000000 / 10.00000000) * 100) // replace 4.4 by 'reward' (mock)
+  const percent = Math.floor((4.4 / 10.0) * 100); // replace 4.4 by 'reward' (mock)
 
   if (isMinerRunning && hashes === 0) {
     window.hashesInterval = setInterval(() => {
@@ -40,88 +41,88 @@ const MineProgress = ({
 
   return (
     <Wrapper>
-      <InnerWrapper>
-        <InfoWrapper>
-          <SStatistic title="Quantia atual" value="0.00000000" />
-          <SStatistic title="Quantia até o sorteio" value="10.00000000" />
-        </InfoWrapper>
-        <ProgressWrapper>
-          <Progress
-            percent={percent}
-            showInfo={false}
-            trailColor={colors.mediumGray}
-            strokeColor={{
-              from: colors.lightGreen,
-              to: colors.green,
-            }}
-            strokeWidth={20}
-          />
-          {isMinerRunning && (
-            <StatusWrapper>
-              {!isEligible ? (
-                <Status color={colors.red}>
-                  Continue minerando pelos próximos{' '}
-                  <SCountdown
-                    value={eligibleTimer}
-                    format="mm:ss"
-                    onFinish={() => setEligible(true)}
-                  />{' '}
-                  para concorrer nessa rodada
-                </Status>
-              ) : (
-                <Status color={colors.green}>
-                  Você está concorrendo a essa rodada
-                </Status>
-              )}
-              <Status>Suas hashes por segundo: {hashes}</Status>
-              <Status>
-                Seu tempo total minerando:{' '}
-                <Timer
-                  formatValue={value => `${value < 10 ? `0${value}` : value}`}
-                >
-                  <Timer.Hours />
-                  {':'}
-                  <Timer.Minutes />
-                  {':'}
-                  <Timer.Seconds />
-                </Timer>
+      <InfoWrapper>
+        <SStatistic title="Quantia atual" value="0.00000000" />
+        <SStatistic title="Quantia até o sorteio" value="10.00000000" />
+      </InfoWrapper>
+      <ProgressWrapper>
+        <Progress
+          percent={percent}
+          showInfo={false}
+          trailColor={colors.mediumGray}
+          strokeColor={{
+            from: colors.lightGreen,
+            to: colors.green,
+          }}
+          strokeWidth={20}
+        />
+        {isMinerRunning && (
+          <StatusWrapper>
+            {!isEligible ? (
+              <Status color={colors.red}>
+                Continue minerando pelos próximos{' '}
+                <SCountdown
+                  value={eligibleTimer}
+                  format="mm:ss"
+                  onFinish={() => setEligible(true)}
+                />{' '}
+                para concorrer nessa rodada
               </Status>
-            </StatusWrapper>
-          )}
+            ) : (
+              <Status color={colors.green}>
+                Você está concorrendo a essa rodada
+              </Status>
+            )}
+            <Status>Suas hashes por segundo: {hashes}</Status>
+            <Status>
+              Seu tempo total minerando:{' '}
+              <Timer
+                formatValue={value => `${value < 10 ? `0${value}` : value}`}
+              >
+                <Timer.Hours />
+                {':'}
+                <Timer.Minutes />
+                {':'}
+                <Timer.Seconds />
+              </Timer>
+            </Status>
+          </StatusWrapper>
+        )}
 
-          <MineButton
-            type="primary"
-            size="large"
-            isMinerRunning={isMinerRunning}
-            disabled={!isLoggedIn}
-            onClick={() => {
-              buttonAction();
-              setEligibleTimer(Date.now() + 1000 * 60 * 1);
-              setHashes(0);
-              isMinerRunning && setEligible(false);
-            }}
-            loading={!isMinerReady}
-          >
-            {getButtonText(isLoggedIn, isMinerRunning, isMinerReady)}
-          </MineButton>
-        </ProgressWrapper>
-      </InnerWrapper>
+        <MineButton
+          type="primary"
+          size="large"
+          isMinerRunning={isMinerRunning}
+          disabled={!isLoggedIn}
+          onClick={() => {
+            buttonAction();
+            setEligibleTimer(Date.now() + 1000 * 60 * 1);
+            setHashes(0);
+            isMinerRunning && setEligible(false);
+          }}
+          loading={!isMinerReady}
+        >
+          {getButtonText(isLoggedIn, isMinerRunning, isMinerReady)}
+        </MineButton>
+      </ProgressWrapper>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
   flex: 1;
-  display: block;
-`;
-
-const InnerWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 400px;
-  width: 500px;
+  min-width: 100%;
+  margin: auto;
+
+  ${media.tablet`
+    min-width: 200px;
+    max-width: 500px;
+    margin: 0 20px;
+  `};
 `;
 
 const InfoWrapper = styled.div`

@@ -124,7 +124,7 @@ const IndexPage = () => {
             <Winners />
           </ContentInnerWrapper>
           <BottomBlockWrapper>
-            <BottomParagraph right>
+            <BottomParagraph>
               <a
                 href="/Termos-e-Condicoes-LOTOCRIPTO.pdf"
                 target="_blank"
@@ -170,7 +170,7 @@ const HeroWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   max-width: 1200px;
-  padding: 20px 15px 10px 15px;
+  padding: 20px 20px 10px;
   margin: auto;
 
   ${media.tablet`
@@ -204,34 +204,53 @@ const HeroTitle = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  padding: 60px 40px 10px;
+  padding: 60px 20px 10px;
+  max-width: 1200px;
+  margin: auto;
+
+  ${media.tablet`
+    padding: 60px 40px 10px;
+  `};
 `;
 
 const ContentInnerWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-around;
+  justify-content: space-between;
   max-width: 1200px;
   margin: auto;
-  padding: 0 40px;
-  ${media.large`
-  flex-direction: row;
+
+  ${media.tablet`
+    flex-direction: row;
+    margin: 0 -20px;
   `}
 `;
 
 const BottomParagraph = styled.p`
-  text-align: ${props => (props.right ? 'right' : 'left')};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
 
-  a {
-    padding: ${props => (props.right ? '0 20px' : '0')};
-  }
+  ${media.tablet`
+    flex-direction: row;
+    justify-content: flex-end;
+    margin: 0 -10px;
+
+    a {
+      margin: 0 10px;
+    }
+  `};
 `;
 
 const BottomBlockWrapper = styled.div`
   max-width: 1200px;
   margin: auto;
-  padding: 40px 40px 0;
+
+  ${media.tablet`
+    padding: 40px 0;
+  `};
 `;
 
 export default IndexPage;

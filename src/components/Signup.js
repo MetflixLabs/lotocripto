@@ -124,12 +124,12 @@ const Signup = ({ setSignupVisible }) => {
         </Form.Item>
         <Form.Item
           name="walletAddress"
-          label="Wallet de MINTME"
+          label="Carteira de MINTME"
           required
           rules={[
             { required: true, message: 'Esse campo não pode ficar em branco' },
           ]}
-          tooltip="Sua wallet é para onde enviaremos as moedas que você ganhar nos sorteios. Crie uma wallet no site oficial da moeda: mintme.com"
+          tooltip="Sua carteira é para onde enviaremos as moedas que você ganhar nos sorteios. Crie uma carteira no site oficial da moeda: mintme.com"
         >
           <Input
             placeholder="Exemplo: 0x0ef22e4bba275017d15ccb7b3f43a141f20ab3fe"
