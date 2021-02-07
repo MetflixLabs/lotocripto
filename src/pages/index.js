@@ -19,6 +19,7 @@ import MineProgress from '../components/MineProgress';
 import Winners from '../components/Winners';
 import Signup from '../components/Signup';
 import Login from '../components/Login';
+import HowItWorks from '../components/HowItWorks';
 
 // const apiUrl =
 //   typeof window !== 'undefined' && !!window.location.href.match(/localhost/gi)
@@ -74,6 +75,7 @@ const IndexPage = () => {
   });
   const [isSignupVisible, setSignupVisible] = useState(false);
   const [isLoginVisible, setLoginVisible] = useState(false);
+  const [isHowItWorksVisible, setHowItWorksVisible] = useState(false);
 
   // socket.on('serverData', data => {
   //   setServerData(data);
@@ -98,6 +100,7 @@ const IndexPage = () => {
       <Wrapper>
         {isSignupVisible && <Signup setSignupVisible={setSignupVisible} />}
         {isLoginVisible && <Login setLoginVisible={setLoginVisible} />}
+        {isHowItWorksVisible && <HowItWorks setHowItWorksVisible={setHowItWorksVisible} />}
 
         <HeroWrapper>
           <HeroDescriptionWrapper>
@@ -120,6 +123,7 @@ const IndexPage = () => {
               }
               isMinerReady={isMinerReady}
               isMinerRunning={isMinerRunning}
+              setHowItWorksVisible={setHowItWorksVisible}
             />
             <Winners />
           </ContentInnerWrapper>

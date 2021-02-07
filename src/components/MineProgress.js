@@ -25,6 +25,7 @@ const MineProgress = ({
   isMinerReady,
   isMinerRunning,
   isLoggedIn = true,
+  setHowItWorksVisible,
 }) => {
   const [isEligible, setEligible] = useState(false);
   const [eligibleTimer, setEligibleTimer] = useState(0);
@@ -88,22 +89,31 @@ const MineProgress = ({
             </Status>
           </StatusWrapper>
         )}
-
-        <MineButton
-          type="primary"
-          size="large"
-          isMinerRunning={isMinerRunning}
-          disabled={!isLoggedIn}
-          onClick={() => {
-            buttonAction();
-            setEligibleTimer(Date.now() + 1000 * 60 * 1);
-            setHashes(0);
-            isMinerRunning && setEligible(false);
-          }}
-          loading={!isMinerReady}
-        >
-          {getButtonText(isLoggedIn, isMinerRunning, isMinerReady)}
-        </MineButton>
+        <ButtonWrapper>
+          <HowItWorks
+            size="large"
+            onClick={() => {
+              setHowItWorksVisible(true);
+            }}
+          >
+            Como funciona?
+          </HowItWorks>
+          <MineButton
+            type="primary"
+            size="large"
+            isMinerRunning={isMinerRunning}
+            disabled={!isLoggedIn}
+            onClick={() => {
+              buttonAction();
+              setEligibleTimer(Date.now() + 1000 * 60 * 1);
+              setHashes(0);
+              isMinerRunning && setEligible(false);
+            }}
+            loading={!isMinerReady}
+          >
+            {getButtonText(isLoggedIn, isMinerRunning, isMinerReady)}
+          </MineButton>
+        </ButtonWrapper>
       </ProgressWrapper>
     </Wrapper>
   );
@@ -140,15 +150,29 @@ const SStatistic = styled(Statistic)`
   margin: 0 10px 0 0;
 `;
 
-const MineButton = styled(Button)`
-  margin-top: 10px;
+const ButtonWrapper = styled.div`
+  display: flex;
+  margin: 10px -4px 0;
+`;
 
+const MineButton = styled(Button)`
+  margin: 0 4px;
   border-color: ${props =>
     props.isMinerRunning ? colors.red : colors.green} !important;
 
   &:not(:disabled) {
     background-color: ${props =>
       props.isMinerRunning ? colors.red : colors.green} !important;
+  }
+`;
+
+const HowItWorks = styled(Button)`
+  margin: 0 4px;
+  border-color: ${colors.green} !important;
+  color: ${colors.green} !important;
+
+  &:hover {
+    color: ${colors.green} !important;
   }
 `;
 
