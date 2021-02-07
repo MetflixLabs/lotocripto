@@ -103,7 +103,7 @@ const HowItWorksModal = styled(Modal)`
 `;
 
 const BlockWrapper = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 const Title = styled.h4`
