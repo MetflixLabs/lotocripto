@@ -114,6 +114,13 @@ const MineProgress = ({
             {getButtonText(isLoggedIn, isMinerRunning, isMinerReady)}
           </MineButton>
         </ButtonWrapper>
+        <DiscordEmbed
+          title="discord"
+          src="https://titanembeds.com/embed/402212992273350657?defaultchannel=808025051240333333&theme=IceWyvern"
+          height="400"
+          width="100%"
+          frameborder="0"
+        ></DiscordEmbed>
       </ProgressWrapper>
     </Wrapper>
   );
@@ -195,6 +202,12 @@ const SCountdown = styled(Countdown)`
 const Status = styled.div`
   display: flex;
   color: ${props => (props.color ? props.color : colors.mediumGray)};
+`;
+
+const DiscordEmbed = styled.iframe`
+  margin-top: 26px;
+  border-radius: 4px;
+  border: 1px solid ${colors.green};
 `;
 
 export default MineProgress;
