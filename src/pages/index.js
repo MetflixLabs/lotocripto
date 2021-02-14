@@ -124,7 +124,7 @@ const IndexPage = () => {
     const apiUrl = process.env.GATSBY_API_URL;
 
     window.gtag &&
-      window.gtag('config', 'UA-161435848-1', {
+      window.gtag('config', 'UA-161435848-2', {
         page_title: 'home',
         page_path: '/',
       });
