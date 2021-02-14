@@ -35,17 +35,19 @@ const submitLogin = (values, setSubmitting, setLoginVisible, setUserState) => {
             name,
           };
 
-          localStorage.setItem(
-            'lotocripto-userState',
-            JSON.stringify(userState)
-          );
+          typeof window !== 'undefined' &&
+            localStorage.setItem(
+              'lotocripto-userState',
+              JSON.stringify(userState)
+            );
 
           setUserState(userState);
           setLoginVisible(false);
         })
         .catch(err => {
           message.error({
-            content: 'Erro ao carregar seu perfil, por favor atualize a página.',
+            content:
+              'Erro ao carregar seu perfil, por favor atualize a página.',
             key: 'login-message',
             duration: 10,
           });

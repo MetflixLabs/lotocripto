@@ -68,7 +68,8 @@ const toggleMiner = (isAdblocked, isMinerRunning, setIsMinerRunning) => {
 const logout = setUserState => {
   const userState = { isLoggedIn: false, id: null, name: null };
 
-  localStorage.setItem('lotocripto-userState', JSON.stringify(userState));
+  typeof window !== 'undefined' &&
+    localStorage.setItem('lotocripto-userState', JSON.stringify(userState));
   document.cookie = 'token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   setUserState(JSON.stringify(userState));
 };
@@ -79,7 +80,8 @@ const IndexPage = () => {
   const [isMinerRunning, setIsMinerRunning] = useState(false);
   const [currentThrottle, setCurrentThrottle] = useState(1);
   const [userState, setUserState] = useState(
-    JSON.parse(localStorage.getItem('lotocripto-userState')) ||
+    (typeof window !== 'undefined' &&
+      JSON.parse(localStorage.getItem('lotocripto-userState'))) ||
       JSON.stringify({ isLoggedIn: false, id: null, name: null })
   );
   const [serverData, setServerData] = useState({
@@ -115,7 +117,11 @@ const IndexPage = () => {
           name,
         };
 
-        localStorage.setItem('lotocripto-userState', JSON.stringify(userState));
+        typeof window !== 'undefined' &&
+          localStorage.setItem(
+            'lotocripto-userState',
+            JSON.stringify(userState)
+          );
         setUserState(userState);
       })
       .catch(err => {
@@ -123,8 +129,10 @@ const IndexPage = () => {
          * User not logged in or session expired
          */
         const userState = { isLoggedIn: false, id: null, name: null };
-        const currentUserState = JSON.parse(localStorage.getItem('lotocripto-userState'));
-        
+        const currentUserState = JSON.parse(
+          typeof window !== 'undefined' &&
+            localStorage.getItem('lotocripto-userState')
+        );
 
         /**
          * Show a notification if user was previously logged in, but cookie expired
@@ -135,9 +143,13 @@ const IndexPage = () => {
             key: 'userState-message',
             duration: 5,
           });
-        } 
-        
-        localStorage.setItem('lotocripto-userState', JSON.stringify(userState));
+        }
+
+        typeof window !== 'undefined' &&
+          localStorage.setItem(
+            'lotocripto-userState',
+            JSON.stringify(userState)
+          );
         setUserState(JSON.stringify(userState));
       });
   }, []);

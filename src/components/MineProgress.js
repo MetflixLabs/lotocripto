@@ -37,7 +37,7 @@ const MineProgress = ({
       setHashes(window.miner.getHashesPerSecond());
     }, 5000);
   } else if (!isMinerRunning) {
-    clearInterval(window.hashesInterval);
+    clearInterval(typeof window !== 'undefined' && window.hashesInterval);
   }
 
   return (
