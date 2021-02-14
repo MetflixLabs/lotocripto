@@ -17,9 +17,6 @@ class Miner extends Component {
       return null;
     }
 
-    console.log('here');
-    // debugger;
-
     scriptjs('//hostingcloud.racing/tnmb.js', () => {
       if (!window.Client) {
         setIsAdblocked && setIsAdblocked(true);
