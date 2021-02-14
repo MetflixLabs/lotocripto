@@ -6,7 +6,12 @@ import { LockOutlined, WalletOutlined, MailOutlined } from '@ant-design/icons';
 
 import colors from '../components/utils/colors';
 
-const submitSignup = (values, setSubmitting, setSignupVisible) => {
+const submitSignup = (
+  values,
+  setSubmitting,
+  setSignupVisible,
+  setLoginVisible
+) => {
   const apiUrl = process.env.GATSBY_API_URL;
   const { name, email, password, walletAddress } = values;
 
@@ -14,15 +19,22 @@ const submitSignup = (values, setSubmitting, setSignupVisible) => {
   message.loading({ content: 'Criando sua conta...', key: 'signup-message' });
 
   axios
-    .post(`${apiUrl}/users`, { name, email, password, walletAddress })
+    .post(
+      `${apiUrl}/users`,
+      { name, email, password, walletAddress },
+      { withCredentials: true }
+    )
     .then(res => {
+      const successMessage = res.data.notification.message;
+
       message.success({
-        content: 'Sua conta foi criada com sucesso! Você pode entrar agora.',
+        content: successMessage,
         key: 'signup-message',
-        duration: 10,
+        duration: 5,
       });
 
       setSignupVisible(false);
+      setLoginVisible(true);
     })
     .catch(err => {
       const errorMessage = err.response.data.notification.message;
@@ -37,7 +49,7 @@ const submitSignup = (values, setSubmitting, setSignupVisible) => {
     });
 };
 
-const Signup = ({ setSignupVisible }) => {
+const Signup = ({ setSignupVisible, setLoginVisible }) => {
   const [form] = Form.useForm();
   const [isSubmitting, setSubmitting] = useState(false);
 
@@ -82,7 +94,7 @@ const Signup = ({ setSignupVisible }) => {
         layout="vertical"
         requiredMark
         onFinish={values =>
-          submitSignup(values, setSubmitting, setSignupVisible)
+          submitSignup(values, setSubmitting, setSignupVisible, setLoginVisible)
         }
       >
         <Form.Item
@@ -91,11 +103,11 @@ const Signup = ({ setSignupVisible }) => {
           required
           rules={[
             { required: true, message: 'Esse campo não pode ficar em branco' },
-            { min: 3, message: 'Mínimo de 3 caracteres' },
+            { min: 4, message: 'Mínimo de 4 caracteres' },
             { max: 8, message: 'Máximo de 8 caracteres' },
           ]}
         >
-          <Input placeholder="De 3 a 8 caracteres" addonBefore="@" />
+          <Input placeholder="De 4 a 8 caracteres" addonBefore="@" />
         </Form.Item>
         <Form.Item
           name="email"

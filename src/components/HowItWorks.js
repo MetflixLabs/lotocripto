@@ -45,7 +45,7 @@ const HowItWorks = ({ setHowItWorksVisible }) => {
         <Paragraph>
           O valor total ganho pelo sorteado será de 90% da quantia total
           estipulada. Os outros 10% serão retidos como taxa de administração
-          para os coordenadores do site.
+          para os coordenadores da plataforma.
         </Paragraph>
         <Paragraph>
           Dos 90% do prêmio, há uma taxa de transferência de 0.01 MINTME

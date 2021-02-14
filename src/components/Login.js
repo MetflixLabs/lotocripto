@@ -1,29 +1,72 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Modal, Form, Input } from 'antd';
+import axios from 'axios';
+import { Modal, Form, Input, message } from 'antd';
 import { LockOutlined } from '@ant-design/icons';
 
 import colors from '../components/utils/colors';
 
-const submitLogin = values => {
-  console.log('submit!', values);
+const submitLogin = (values, setSubmitting, setLoginVisible) => {
+  const apiUrl = process.env.GATSBY_API_URL;
+  const { name, password } = values;
+
+  setSubmitting(true);
+  message.loading({ content: 'Entrando...', key: 'login-message' });
+
+  axios
+    .post(`${apiUrl}/login`, { name, password }, { withCredentials: true })
+    .then(res => {
+      const successMessage = res.data.notification.message;
+
+      message.success({
+        content: successMessage,
+        key: 'login-message',
+        duration: 5,
+      });
+
+      setLoginVisible(false);
+    })
+    .catch(err => {
+      const errorMessage = err.response.data.notification.message;
+
+      message.error({
+        content: errorMessage,
+        key: 'login-message',
+        duration: 10,
+      });
+
+      setSubmitting(false);
+    });
 };
 
 const Login = ({ setLoginVisible }) => {
   const [form] = Form.useForm();
+  const [isSubmitting, setSubmitting] = useState(false);
 
   return (
     <LoginModal
       title="Entrar"
       visible
       onOk={() => form.submit()}
-      onCancel={() => setLoginVisible(false)}
+      onCancel={() => !isSubmitting && setLoginVisible(false)}
       cancelText="Voltar"
       okText="Entrar"
+      cancelButtonProps={{
+        disabled: isSubmitting,
+      }}
+      okButtonProps={{
+        loading: isSubmitting,
+        disabled: isSubmitting,
+      }}
     >
-      <Form form={form} layout="vertical" requiredMark onFinish={submitLogin}>
+      <Form
+        form={form}
+        layout="vertical"
+        requiredMark
+        onFinish={values => submitLogin(values, setSubmitting, setLoginVisible)}
+      >
         <Form.Item
-          name="nickname"
+          name="name"
           label="Nickname"
           required
           rules={[

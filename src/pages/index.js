@@ -98,9 +98,16 @@ const IndexPage = () => {
       />
       <SEO title="LotoCripto - Minere e concorra!" />
       <Wrapper>
-        {isSignupVisible && <Signup setSignupVisible={setSignupVisible} />}
+        {isSignupVisible && (
+          <Signup
+            setSignupVisible={setSignupVisible}
+            setLoginVisible={setLoginVisible}
+          />
+        )}
         {isLoginVisible && <Login setLoginVisible={setLoginVisible} />}
-        {isHowItWorksVisible && <HowItWorks setHowItWorksVisible={setHowItWorksVisible} />}
+        {isHowItWorksVisible && (
+          <HowItWorks setHowItWorksVisible={setHowItWorksVisible} />
+        )}
 
         <HeroWrapper>
           <HeroDescriptionWrapper>
