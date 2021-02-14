@@ -66,12 +66,35 @@ const toggleMiner = (isAdblocked, isMinerRunning, setIsMinerRunning) => {
 };
 
 const logout = setUserState => {
-  const userState = { isLoggedIn: false, id: null, name: null };
+  const apiUrl = process.env.GATSBY_API_URL;
 
-  typeof window !== 'undefined' &&
-    localStorage.setItem('lotocripto-userState', JSON.stringify(userState));
-  document.cookie = 'token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-  setUserState(JSON.stringify(userState));
+  axios
+    .get(`${apiUrl}/logout`, { withCredentials: true })
+    .then(res => {
+      const userState = { isLoggedIn: false, id: null, name: null };
+
+      typeof window !== 'undefined' &&
+        localStorage.setItem('lotocripto-userState', JSON.stringify(userState));
+
+      const successMessage = res.data.notification.message;
+
+      message.success({
+        content: successMessage,
+        key: 'logout-message',
+        duration: 5,
+      });
+
+      setUserState(JSON.stringify(userState));
+    })
+    .catch(err => {
+      const errorMessage = err.response.data.notification.message;
+
+      message.error({
+        content: errorMessage,
+        key: 'logout-message',
+        duration: 5,
+      });
+    });
 };
 
 const IndexPage = () => {
