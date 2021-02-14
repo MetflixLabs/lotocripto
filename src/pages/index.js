@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { navigate } from 'gatsby';
 import styled from 'styled-components';
+import { Avatar, message } from 'antd';
 import axios from 'axios';
 import Timer from 'react-compound-timer';
 import moment from 'moment';
@@ -64,11 +65,23 @@ const toggleMiner = (isAdblocked, isMinerRunning, setIsMinerRunning) => {
   setIsMinerRunning(true);
 };
 
+const logout = setUserState => {
+  const userState = { isLoggedIn: false, id: null, name: null };
+
+  localStorage.setItem('lotocripto-userState', JSON.stringify(userState));
+  document.cookie = 'token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  setUserState(JSON.stringify(userState));
+};
+
 const IndexPage = () => {
   const [isAdblocked, setIsAdblocked] = useState(false);
   const [isMinerReady, setIsMinerReady] = useState(false);
   const [isMinerRunning, setIsMinerRunning] = useState(false);
   const [currentThrottle, setCurrentThrottle] = useState(1);
+  const [userState, setUserState] = useState(
+    JSON.parse(localStorage.getItem('lotocripto-userState')) ||
+      JSON.stringify({ isLoggedIn: false, id: null, name: null })
+  );
   const [serverData, setServerData] = useState({
     balance: '-',
     onlineUsers: '-',
@@ -76,16 +89,56 @@ const IndexPage = () => {
   const [isSignupVisible, setSignupVisible] = useState(false);
   const [isLoginVisible, setLoginVisible] = useState(false);
   const [isHowItWorksVisible, setHowItWorksVisible] = useState(false);
+  const { isLoggedIn, name } = userState;
 
   // socket.on('serverData', data => {
   //   setServerData(data);
   // });
 
   useEffect(() => {
+    const apiUrl = process.env.GATSBY_API_URL;
+
     window.gtag &&
       window.gtag('config', 'UA-161435848-1', {
         page_title: 'home',
         page_path: '/',
+      });
+
+    axios
+      .get(`${apiUrl}/userState`, { withCredentials: true })
+      .then(res => {
+        const { id, name } = res.data.data;
+
+        const userState = {
+          isLoggedIn: true,
+          id,
+          name,
+        };
+
+        localStorage.setItem('lotocripto-userState', JSON.stringify(userState));
+        setUserState(userState);
+      })
+      .catch(err => {
+        /**
+         * User not logged in or session expired
+         */
+        const userState = { isLoggedIn: false, id: null, name: null };
+        const currentUserState = JSON.parse(localStorage.getItem('lotocripto-userState'));
+        
+
+        /**
+         * Show a notification if user was previously logged in, but cookie expired
+         */
+        if (currentUserState && currentUserState.isLoggedIn) {
+          message.warning({
+            content: 'Sua sessão expirou. Por favor, entre novamente.',
+            key: 'userState-message',
+            duration: 5,
+          });
+        } 
+        
+        localStorage.setItem('lotocripto-userState', JSON.stringify(userState));
+        setUserState(JSON.stringify(userState));
       });
   }, []);
 
@@ -104,7 +157,12 @@ const IndexPage = () => {
             setLoginVisible={setLoginVisible}
           />
         )}
-        {isLoginVisible && <Login setLoginVisible={setLoginVisible} />}
+        {isLoginVisible && (
+          <Login
+            setLoginVisible={setLoginVisible}
+            setUserState={setUserState}
+          />
+        )}
         {isHowItWorksVisible && (
           <HowItWorks setHowItWorksVisible={setHowItWorksVisible} />
         )}
@@ -114,11 +172,24 @@ const IndexPage = () => {
             <HeroTitle>LotoCripto</HeroTitle>
           </HeroDescriptionWrapper>
           <HeroCTA>
-            <HeroLink onClick={() => setLoginVisible(true)}>Entrar</HeroLink>
-            {' / '}
-            <HeroLink onClick={() => setSignupVisible(true)}>
-              Registrar
-            </HeroLink>
+            {!isLoggedIn ? (
+              <>
+                <HeroLink onClick={() => setLoginVisible(true)}>
+                  Entrar
+                </HeroLink>
+                {' / '}
+                <HeroLink onClick={() => setSignupVisible(true)}>
+                  Registrar
+                </HeroLink>
+              </>
+            ) : (
+              <>
+                <Avatar style={{ backgroundColor: colors.green }}>
+                  {name}
+                </Avatar>
+                <HeroLink onClick={() => logout(setUserState)}>Sair</HeroLink>
+              </>
+            )}
           </HeroCTA>
         </HeroWrapper>
         <ContentWrapper>
@@ -131,6 +202,7 @@ const IndexPage = () => {
               isMinerReady={isMinerReady}
               isMinerRunning={isMinerRunning}
               setHowItWorksVisible={setHowItWorksVisible}
+              isLoggedIn={isLoggedIn}
             />
             <Winners />
           </ContentInnerWrapper>
@@ -202,6 +274,9 @@ const HeroCTA = styled.div`
 const HeroLink = styled.div`
   cursor: pointer;
   margin: 0 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const HeroTitle = styled.div`

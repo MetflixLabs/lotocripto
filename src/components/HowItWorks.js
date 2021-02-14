@@ -59,8 +59,9 @@ const HowItWorks = ({ setHowItWorksVisible }) => {
         <Paragraph>
           A resposta é <strong>não</strong>. Entretanto, ao entrar em uma
           rodada, você estará emprestando um pouco do seu poder computacional
-          para minerar a moeda em questão. Seu único e exclusivo gasto será
-          esse.
+          para minerar a moeda em questão. Dependendo do quanto você minerar,
+          isso pode aumentar um pouco o valor da sua conta de luz. Seu único e
+          exclusivo gasto será esse.
         </Paragraph>
       </BlockWrapper>
       <BlockWrapper>

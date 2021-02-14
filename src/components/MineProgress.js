@@ -24,7 +24,7 @@ const MineProgress = ({
   buttonAction,
   isMinerReady,
   isMinerRunning,
-  isLoggedIn = true,
+  isLoggedIn,
   setHowItWorksVisible,
 }) => {
   const [isEligible, setEligible] = useState(false);

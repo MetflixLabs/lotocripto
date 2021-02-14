@@ -6,7 +6,7 @@ import { LockOutlined } from '@ant-design/icons';
 
 import colors from '../components/utils/colors';
 
-const submitLogin = (values, setSubmitting, setLoginVisible) => {
+const submitLogin = (values, setSubmitting, setLoginVisible, setUserState) => {
   const apiUrl = process.env.GATSBY_API_URL;
   const { name, password } = values;
 
@@ -18,13 +18,40 @@ const submitLogin = (values, setSubmitting, setLoginVisible) => {
     .then(res => {
       const successMessage = res.data.notification.message;
 
-      message.success({
-        content: successMessage,
-        key: 'login-message',
-        duration: 5,
-      });
+      axios
+        .get(`${apiUrl}/userState`, { withCredentials: true })
+        .then(res => {
+          const { id, name } = res.data.data;
 
-      setLoginVisible(false);
+          message.success({
+            content: successMessage,
+            key: 'login-message',
+            duration: 5,
+          });
+
+          const userState = {
+            isLoggedIn: true,
+            id,
+            name,
+          };
+
+          localStorage.setItem(
+            'lotocripto-userState',
+            JSON.stringify(userState)
+          );
+
+          setUserState(userState);
+          setLoginVisible(false);
+        })
+        .catch(err => {
+          message.error({
+            content: 'Erro ao carregar seu perfil, por favor atualize a página.',
+            key: 'login-message',
+            duration: 10,
+          });
+
+          setSubmitting(false);
+        });
     })
     .catch(err => {
       const errorMessage = err.response.data.notification.message;
@@ -39,7 +66,7 @@ const submitLogin = (values, setSubmitting, setLoginVisible) => {
     });
 };
 
-const Login = ({ setLoginVisible }) => {
+const Login = ({ setLoginVisible, setUserState }) => {
   const [form] = Form.useForm();
   const [isSubmitting, setSubmitting] = useState(false);
 
@@ -63,7 +90,9 @@ const Login = ({ setLoginVisible }) => {
         form={form}
         layout="vertical"
         requiredMark
-        onFinish={values => submitLogin(values, setSubmitting, setLoginVisible)}
+        onFinish={values =>
+          submitLogin(values, setSubmitting, setLoginVisible, setUserState)
+        }
       >
         <Form.Item
           name="name"
