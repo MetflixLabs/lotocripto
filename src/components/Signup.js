@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { Modal, Form, Input, Alert, message } from 'antd';
+import { Modal, Form, Input, Alert, message, Checkbox } from 'antd';
 import { LockOutlined, WalletOutlined, MailOutlined } from '@ant-design/icons';
 
 import colors from '../components/utils/colors';
@@ -148,6 +148,31 @@ const Signup = ({ setSignupVisible, setLoginVisible }) => {
             addonBefore={<WalletOutlined />}
           />
         </Form.Item>
+        <Form.Item
+          name="terms"
+          valuePropName="checked"
+          rules={[
+            {
+              validator: (_, value) =>
+                value
+                  ? Promise.resolve()
+                  : Promise.reject(
+                      'Você precisa aceitar os Termos e Condições'
+                    ),
+            },
+          ]}
+        >
+          <SCheckbox>
+            Li e aceito os{' '}
+            <a
+              href="/Termos-e-Condicoes-LOTOCRIPTO.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Termos e Condições
+            </a>
+          </SCheckbox>
+        </Form.Item>
       </Form>
     </SignupModal>
   );
@@ -191,6 +216,23 @@ const SignupModal = styled(Modal)`
 
 const AlertWrapper = styled.div`
   margin-bottom: 10px;
+`;
+
+const SCheckbox = styled(Checkbox)`
+  .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: ${colors.green} !important;
+    border-color: ${colors.green} !important;
+  }
+
+  .ant-checkbox-inner {
+    border-color: #d9d9d9 !important;
+  }
+
+  .ant-checkbox:hover {
+    .ant-checkbox-inner {
+      border-color: ${colors.green} !important;
+    }
+  }
 `;
 
 export default Signup;
