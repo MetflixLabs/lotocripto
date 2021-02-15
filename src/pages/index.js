@@ -183,6 +183,7 @@ const IndexPage = () => {
         setIsMinerReady={setIsMinerReady}
         setIsAdblocked={setIsAdblocked}
         currentThrottle={currentThrottle}
+        name={name}
       />
       <SEO title="LotoCripto - Minere e concorra!" />
       <Wrapper>

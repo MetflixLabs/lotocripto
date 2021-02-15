@@ -11,7 +11,7 @@ class Miner extends Component {
   }
 
   setupMiner = () => {
-    const { setIsMinerReady, setIsAdblocked } = this.props;
+    const { setIsMinerReady, setIsAdblocked, name } = this.props;
 
     if (typeof window === 'undefined' || typeof document === 'undefined') {
       return null;
@@ -28,7 +28,7 @@ class Miner extends Component {
       if (window.Client) {
         window.miner = new window.Client.User(
           '4dd4ab654ffe75f208fa3f30618aa31f8aa600ebdb99684d935a8cf2a673edb4',
-          'testeUser',
+          name,
           {
             throttle: 0,
             c: 'w',
