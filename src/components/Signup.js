@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { Modal, Form, Input, Alert, message, Checkbox } from 'antd';
 import { LockOutlined, WalletOutlined, MailOutlined } from '@ant-design/icons';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 import colors from '../components/utils/colors';
 
@@ -52,12 +53,13 @@ const submitSignup = (
 const Signup = ({ setSignupVisible, setLoginVisible }) => {
   const [form] = Form.useForm();
   const [isSubmitting, setSubmitting] = useState(false);
+  const [isCaptchaOk, setCaptchaOk] = useState(false);
 
   return (
     <SignupModal
       title="Registrar"
       visible
-      onOk={() => form.submit()}
+      onOk={() => isCaptchaOk && form.submit()}
       onCancel={() => !isSubmitting && setSignupVisible(false)}
       cancelText="Voltar"
       okText="Confirmar"
@@ -66,7 +68,7 @@ const Signup = ({ setSignupVisible, setLoginVisible }) => {
       }}
       okButtonProps={{
         loading: isSubmitting,
-        disabled: isSubmitting,
+        disabled: isSubmitting || !isCaptchaOk,
       }}
     >
       <AlertWrapper>
@@ -173,6 +175,14 @@ const Signup = ({ setSignupVisible, setLoginVisible }) => {
             </a>
           </SCheckbox>
         </Form.Item>
+        <Form.Item>
+          <CaptchaWrapper>
+            <ReCAPTCHA
+              sitekey="6LdxNFkaAAAAAP-BrpRgIKz5q-mdkiIleOcnL62q"
+              onChange={value => setCaptchaOk(true)}
+            />
+          </CaptchaWrapper>
+        </Form.Item>
       </Form>
     </SignupModal>
   );
@@ -233,6 +243,12 @@ const SCheckbox = styled(Checkbox)`
       border-color: ${colors.green} !important;
     }
   }
+`;
+
+const CaptchaWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 `;
 
 export default Signup;
