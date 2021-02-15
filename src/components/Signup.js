@@ -248,7 +248,6 @@ const SCheckbox = styled(Checkbox)`
 const CaptchaWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 10px;
 `;
 
 export default Signup;
