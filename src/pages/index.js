@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { navigate } from 'gatsby';
 import styled from 'styled-components';
-import { Avatar, message } from 'antd';
+import { Avatar, message, Alert } from 'antd';
 import axios from 'axios';
 import Timer from 'react-compound-timer';
 import moment from 'moment';
@@ -187,6 +187,18 @@ const IndexPage = () => {
       />
       <SEO title="LotoCripto - Minere e concorra!" />
       <Wrapper>
+        <Alert
+          message="Atenção"
+          description={
+            <div>
+              Nossa plataforma ainda está em desenvolvimento. Não é recomendado
+              que você se cadastre e nem tente participar de sorteios por
+              enquanto.
+            </div>
+          }
+          type="warning"
+          showIcon
+        />
         {isSignupVisible && (
           <Signup
             setSignupVisible={setSignupVisible}
