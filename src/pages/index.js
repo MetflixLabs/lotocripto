@@ -24,7 +24,7 @@ import HowItWorks from '../components/HowItWorks';
 
 const socketUrl = process.env.GATSBY_SOCKET_URL;
 const socket = io.connect(socketUrl, {
-  path: '/socketio',
+  path: '/ws',
 });
 
 const toggleMiner = (isAdblocked, isMinerRunning, setIsMinerRunning) => {
