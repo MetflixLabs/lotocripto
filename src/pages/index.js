@@ -22,19 +22,10 @@ import Signup from '../components/Signup';
 import Login from '../components/Login';
 import HowItWorks from '../components/HowItWorks';
 
-// const apiUrl =
-//   typeof window !== 'undefined' && !!window.location.href.match(/localhost/gi)
-//     ? 'http://localhost:3333/api'
-//     : 'https://gretchenless-cloud.xyz/api';
-
-// const socketURL =
-//   typeof window !== 'undefined' && !!window.location.href.match(/localhost/gi)
-//     ? 'http://localhost:3333'
-//     : 'https://gretchenless-cloud.xyz';
-
-// const socket = io.connect(socketURL, {
-//   path: '/corona',
-// });
+const socketUrl = process.env.GATSBY_SOCKET_URL;
+const socket = io.connect(socketUrl, {
+  path: '/socketio',
+});
 
 const toggleMiner = (isAdblocked, isMinerRunning, setIsMinerRunning) => {
   if (isAdblocked) {
@@ -114,7 +105,7 @@ const IndexPage = () => {
   const [isSignupVisible, setSignupVisible] = useState(false);
   const [isLoginVisible, setLoginVisible] = useState(false);
   const [isHowItWorksVisible, setHowItWorksVisible] = useState(false);
-  const { isLoggedIn, name } = userState;
+  const { isLoggedIn, name, id } = userState;
 
   // socket.on('serverData', data => {
   //   setServerData(data);
@@ -243,7 +234,7 @@ const IndexPage = () => {
         <ContentWrapper>
           <ContentInnerWrapper>
             <MineProgress
-              buttonAction={() =>
+              toggleMiner={() =>
                 isMinerReady &&
                 toggleMiner(isAdblocked, isMinerRunning, setIsMinerRunning)
               }
@@ -251,6 +242,8 @@ const IndexPage = () => {
               isMinerRunning={isMinerRunning}
               setHowItWorksVisible={setHowItWorksVisible}
               isLoggedIn={isLoggedIn}
+              socket={socket}
+              userId={id}
             />
             <Winners />
           </ContentInnerWrapper>

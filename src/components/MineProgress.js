@@ -21,11 +21,13 @@ const getButtonText = (isLoggedIn, isMinerRunning) => {
 };
 
 const MineProgress = ({
-  buttonAction,
+  toggleMiner,
   isMinerReady,
   isMinerRunning,
   isLoggedIn,
   setHowItWorksVisible,
+  socket,
+  userId,
 }) => {
   const [isEligible, setEligible] = useState(false);
   const [eligibleTimer, setEligibleTimer] = useState(0);
@@ -104,9 +106,11 @@ const MineProgress = ({
             isMinerRunning={isMinerRunning}
             disabled={!isLoggedIn}
             onClick={() => {
-              buttonAction();
+              toggleMiner();
               setEligibleTimer(Date.now() + 1000 * 60 * 1);
               setHashes(0);
+              !isMinerRunning && socket.emit('join_round', { userId });
+              isMinerRunning && socket.emit('leave_round', { userId });
               isMinerRunning && setEligible(false);
             }}
             loading={!isMinerReady}
