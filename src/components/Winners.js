@@ -8,216 +8,225 @@ const mockTransactionId =
   '0x39f34154152a439e3ee6eefab232b238520cd47676a7e68e9954480b63358fba';
 
 const Winners = () => (
-  <Wrapper>
-    <Title>Últimos vencedores</Title>
-    <WinnersWrapper>
-      <WinnerWrapper>
-        <Date>02 Fev</Date>
-        <Nick>@pedrinho</Nick>
-        <Transaction
-          href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {`${mockTransactionId.slice(0, 12)}...`}
-        </Transaction>
-        <Amount>+9 MINTME</Amount>
-      </WinnerWrapper>
-      <WinnerWrapper>
-        <Date>03 Fev</Date>
-        <Nick>@augustos</Nick>
-        <Transaction
-          href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {`${mockTransactionId.slice(0, 12)}...`}
-        </Transaction>
-        <Amount>+9 MINTME</Amount>
-      </WinnerWrapper>
-      <WinnerWrapper>
-        <Date>03 Fev</Date>
-        <Nick>@juninho</Nick>
-        <Transaction
-          href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {`${mockTransactionId.slice(0, 12)}...`}
-        </Transaction>
-        <Amount>+9 MINTME</Amount>
-      </WinnerWrapper>
+  <>
+    <Wrapper>
+      <Title>Últimos vencedores</Title>
+      <WinnersWrapper>
+        <WinnerWrapper>
+          <Date>02 Fev</Date>
+          <Nick>@pedrinho</Nick>
+          <Transaction
+            href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {`${mockTransactionId.slice(0, 12)}...`}
+          </Transaction>
+          <Amount>+9 MINTME</Amount>
+        </WinnerWrapper>
+        <WinnerWrapper>
+          <Date>03 Fev</Date>
+          <Nick>@augustos</Nick>
+          <Transaction
+            href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {`${mockTransactionId.slice(0, 12)}...`}
+          </Transaction>
+          <Amount>+9 MINTME</Amount>
+        </WinnerWrapper>
+        <WinnerWrapper>
+          <Date>03 Fev</Date>
+          <Nick>@juninho</Nick>
+          <Transaction
+            href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {`${mockTransactionId.slice(0, 12)}...`}
+          </Transaction>
+          <Amount>+9 MINTME</Amount>
+        </WinnerWrapper>
 
-      <WinnerWrapper>
-        <Date>03 Fev</Date>
-        <Nick>@juninho</Nick>
-        <Transaction
-          href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {`${mockTransactionId.slice(0, 12)}...`}
-        </Transaction>
-        <Amount>+9 MINTME</Amount>
-      </WinnerWrapper>
-      <WinnerWrapper>
-        <Date>03 Fev</Date>
-        <Nick>@juninho</Nick>
-        <Transaction
-          href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {`${mockTransactionId.slice(0, 12)}...`}
-        </Transaction>
-        <Amount>+9 MINTME</Amount>
-      </WinnerWrapper>
-      <WinnerWrapper>
-        <Date>03 Fev</Date>
-        <Nick>@juninho</Nick>
-        <Transaction
-          href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {`${mockTransactionId.slice(0, 12)}...`}
-        </Transaction>
-        <Amount>+9 MINTME</Amount>
-      </WinnerWrapper>
-      <WinnerWrapper>
-        <Date>03 Fev</Date>
-        <Nick>@juninho</Nick>
-        <Transaction
-          href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {`${mockTransactionId.slice(0, 12)}...`}
-        </Transaction>
-        <Amount>+9 MINTME</Amount>
-      </WinnerWrapper>
-      <WinnerWrapper>
-        <Date>03 Fev</Date>
-        <Nick>@juninho</Nick>
-        <Transaction
-          href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {`${mockTransactionId.slice(0, 12)}...`}
-        </Transaction>
-        <Amount>+9 MINTME</Amount>
-      </WinnerWrapper>
-      <WinnerWrapper>
-        <Date>03 Fev</Date>
-        <Nick>@juninho</Nick>
-        <Transaction
-          href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {`${mockTransactionId.slice(0, 12)}...`}
-        </Transaction>
-        <Amount>+9 MINTME</Amount>
-      </WinnerWrapper>
-      <WinnerWrapper>
-        <Date>03 Fev</Date>
-        <Nick>@juninho</Nick>
-        <Transaction
-          href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {`${mockTransactionId.slice(0, 12)}...`}
-        </Transaction>
-        <Amount>+9 MINTME</Amount>
-      </WinnerWrapper>
-      <WinnerWrapper>
-        <Date>03 Fev</Date>
-        <Nick>@juninho</Nick>
-        <Transaction
-          href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {`${mockTransactionId.slice(0, 12)}...`}
-        </Transaction>
-        <Amount>+9 MINTME</Amount>
-      </WinnerWrapper>
-      <WinnerWrapper>
-        <Date>03 Fev</Date>
-        <Nick>@juninho</Nick>
-        <Transaction
-          href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {`${mockTransactionId.slice(0, 12)}...`}
-        </Transaction>
-        <Amount>+9 MINTME</Amount>
-      </WinnerWrapper>
-      <WinnerWrapper>
-        <Date>03 Fev</Date>
-        <Nick>@juninho</Nick>
-        <Transaction
-          href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {`${mockTransactionId.slice(0, 12)}...`}
-        </Transaction>
-        <Amount>+9 MINTME</Amount>
-      </WinnerWrapper>
-      <WinnerWrapper>
-        <Date>03 Fev</Date>
-        <Nick>@juninho</Nick>
-        <Transaction
-          href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {`${mockTransactionId.slice(0, 12)}...`}
-        </Transaction>
-        <Amount>+9 MINTME</Amount>
-      </WinnerWrapper>
-      <WinnerWrapper>
-        <Date>03 Fev</Date>
-        <Nick>@juninho</Nick>
-        <Transaction
-          href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {`${mockTransactionId.slice(0, 12)}...`}
-        </Transaction>
-        <Amount>+9 MINTME</Amount>
-      </WinnerWrapper>
-      <WinnerWrapper>
-        <Date>03 Fev</Date>
-        <Nick>@juninho</Nick>
-        <Transaction
-          href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {`${mockTransactionId.slice(0, 12)}...`}
-        </Transaction>
-        <Amount>+9 MINTME</Amount>
-      </WinnerWrapper>
-      <WinnerWrapper>
-        <Date>03 Fev</Date>
-        <Nick>@juninho</Nick>
-        <Transaction
-          href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {`${mockTransactionId.slice(0, 12)}...`}
-        </Transaction>
-        <Amount>+9 MINTME</Amount>
-      </WinnerWrapper>
-    </WinnersWrapper>
-  </Wrapper>
+        <WinnerWrapper>
+          <Date>03 Fev</Date>
+          <Nick>@juninho</Nick>
+          <Transaction
+            href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {`${mockTransactionId.slice(0, 12)}...`}
+          </Transaction>
+          <Amount>+9 MINTME</Amount>
+        </WinnerWrapper>
+        <WinnerWrapper>
+          <Date>03 Fev</Date>
+          <Nick>@juninho</Nick>
+          <Transaction
+            href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {`${mockTransactionId.slice(0, 12)}...`}
+          </Transaction>
+          <Amount>+9 MINTME</Amount>
+        </WinnerWrapper>
+        <WinnerWrapper>
+          <Date>03 Fev</Date>
+          <Nick>@juninho</Nick>
+          <Transaction
+            href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {`${mockTransactionId.slice(0, 12)}...`}
+          </Transaction>
+          <Amount>+9 MINTME</Amount>
+        </WinnerWrapper>
+        <WinnerWrapper>
+          <Date>03 Fev</Date>
+          <Nick>@juninho</Nick>
+          <Transaction
+            href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {`${mockTransactionId.slice(0, 12)}...`}
+          </Transaction>
+          <Amount>+9 MINTME</Amount>
+        </WinnerWrapper>
+        <WinnerWrapper>
+          <Date>03 Fev</Date>
+          <Nick>@juninho</Nick>
+          <Transaction
+            href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {`${mockTransactionId.slice(0, 12)}...`}
+          </Transaction>
+          <Amount>+9 MINTME</Amount>
+        </WinnerWrapper>
+        <WinnerWrapper>
+          <Date>03 Fev</Date>
+          <Nick>@juninho</Nick>
+          <Transaction
+            href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {`${mockTransactionId.slice(0, 12)}...`}
+          </Transaction>
+          <Amount>+9 MINTME</Amount>
+        </WinnerWrapper>
+        <WinnerWrapper>
+          <Date>03 Fev</Date>
+          <Nick>@juninho</Nick>
+          <Transaction
+            href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {`${mockTransactionId.slice(0, 12)}...`}
+          </Transaction>
+          <Amount>+9 MINTME</Amount>
+        </WinnerWrapper>
+        <WinnerWrapper>
+          <Date>03 Fev</Date>
+          <Nick>@juninho</Nick>
+          <Transaction
+            href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {`${mockTransactionId.slice(0, 12)}...`}
+          </Transaction>
+          <Amount>+9 MINTME</Amount>
+        </WinnerWrapper>
+        <WinnerWrapper>
+          <Date>03 Fev</Date>
+          <Nick>@juninho</Nick>
+          <Transaction
+            href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {`${mockTransactionId.slice(0, 12)}...`}
+          </Transaction>
+          <Amount>+9 MINTME</Amount>
+        </WinnerWrapper>
+        <WinnerWrapper>
+          <Date>03 Fev</Date>
+          <Nick>@juninho</Nick>
+          <Transaction
+            href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {`${mockTransactionId.slice(0, 12)}...`}
+          </Transaction>
+          <Amount>+9 MINTME</Amount>
+        </WinnerWrapper>
+        <WinnerWrapper>
+          <Date>03 Fev</Date>
+          <Nick>@juninho</Nick>
+          <Transaction
+            href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {`${mockTransactionId.slice(0, 12)}...`}
+          </Transaction>
+          <Amount>+9 MINTME</Amount>
+        </WinnerWrapper>
+        <WinnerWrapper>
+          <Date>03 Fev</Date>
+          <Nick>@juninho</Nick>
+          <Transaction
+            href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {`${mockTransactionId.slice(0, 12)}...`}
+          </Transaction>
+          <Amount>+9 MINTME</Amount>
+        </WinnerWrapper>
+        <WinnerWrapper>
+          <Date>03 Fev</Date>
+          <Nick>@juninho</Nick>
+          <Transaction
+            href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {`${mockTransactionId.slice(0, 12)}...`}
+          </Transaction>
+          <Amount>+9 MINTME</Amount>
+        </WinnerWrapper>
+        <WinnerWrapper>
+          <Date>03 Fev</Date>
+          <Nick>@juninho</Nick>
+          <Transaction
+            href={`https://www.mintme.com/explorer/tx/${mockTransactionId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {`${mockTransactionId.slice(0, 12)}...`}
+          </Transaction>
+          <Amount>+9 MINTME</Amount>
+        </WinnerWrapper>
+      </WinnersWrapper>
+    </Wrapper>
+    <DiscordEmbed
+      title="discord"
+      src="https://titanembeds.com/embed/402212992273350657?defaultchannel=808025051240333333&theme=IceWyvern"
+      height="400"
+      width="100%"
+      frameborder="0"
+    ></DiscordEmbed>
+  </>
 );
 
 const Wrapper = styled.div`
@@ -278,6 +287,17 @@ const Transaction = styled.a`
 
 const Amount = styled.div`
   color: ${colors.green};
+`;
+
+const DiscordEmbed = styled.iframe`
+  display: block;
+  margin-top: 26px;
+  border-radius: 4px;
+  border: 1px solid ${colors.green};
+
+  ${media.tablet`
+    display: none;
+  `};
 `;
 
 export default Winners;

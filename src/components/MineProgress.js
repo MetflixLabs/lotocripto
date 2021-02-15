@@ -205,9 +205,14 @@ const Status = styled.div`
 `;
 
 const DiscordEmbed = styled.iframe`
-  margin-top: 26px;
-  border-radius: 4px;
-  border: 1px solid ${colors.green};
+  display: none;
+
+  ${media.tablet`
+    display: block;
+    margin-top: 26px;
+    border-radius: 4px;
+    border: 1px solid ${colors.green};
+  `};
 `;
 
 export default MineProgress;
