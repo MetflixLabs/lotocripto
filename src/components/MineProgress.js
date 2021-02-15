@@ -154,7 +154,7 @@ const ProgressWrapper = styled.div`
 `;
 
 const SStatistic = styled(Statistic)`
-  margin: 0 10px 0 0;
+  margin: 0 20px 0 0;
 `;
 
 const ButtonWrapper = styled.div`
