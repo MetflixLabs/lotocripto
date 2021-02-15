@@ -70,6 +70,7 @@ const Signup = ({ setSignupVisible, setLoginVisible }) => {
         loading: isSubmitting,
         disabled: isSubmitting || !isCaptchaOk,
       }}
+      style={{ top: 20 }}
     >
       <AlertWrapper>
         <Alert
