@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Progress, Statistic, Button } from 'antd';
 import Timer from 'react-compound-timer';
+import loadable from '@loadable/component';
 
 import colors from '../components/utils/colors';
 import media from '../components/utils/media';
+
+const MineButton = loadable(() => import('./MineButton'));
 
 const { Countdown } = Statistic;
 
@@ -101,11 +104,10 @@ const MineProgress = ({
             Como funciona?
           </HowItWorks>
           <MineButton
-            type="primary"
-            size="large"
             isMinerRunning={isMinerRunning}
-            disabled={!isLoggedIn}
-            onClick={() => {
+            isMinerReady={isMinerReady}
+            isLoggedIn={isLoggedIn}
+            onClickAction={() => {
               toggleMiner();
               setEligibleTimer(Date.now() + 1000 * 60 * 1);
               setHashes(0);
@@ -113,7 +115,6 @@ const MineProgress = ({
               isMinerRunning && socket.emit('leave_round', { userId });
               isMinerRunning && setEligible(false);
             }}
-            loading={!isMinerReady}
           >
             {getButtonText(isLoggedIn, isMinerRunning, isMinerReady)}
           </MineButton>
@@ -164,17 +165,6 @@ const SStatistic = styled(Statistic)`
 const ButtonWrapper = styled.div`
   display: flex;
   margin: 10px -4px 0;
-`;
-
-const MineButton = styled(Button)`
-  margin: 0 4px;
-  border-color: ${props =>
-    props.isMinerRunning ? colors.red : colors.green} !important;
-
-  &:not(:disabled) {
-    background-color: ${props =>
-      props.isMinerRunning ? colors.red : colors.green} !important;
-  }
 `;
 
 const HowItWorks = styled(Button)`

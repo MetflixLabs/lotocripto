@@ -7,20 +7,17 @@ import Timer from 'react-compound-timer';
 import moment from 'moment';
 import io from 'socket.io-client';
 import 'antd/dist/antd.css';
-import loadable from '@loadable/component';
 
 import Miner from '../components/core/Miner';
 import colors from '../components/utils/colors';
 import media from '../components/utils/media';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
-// import MineProgress from '../components/MineProgress';
+import MineProgress from '../components/MineProgress';
 import Winners from '../components/Winners';
 import Signup from '../components/Signup';
 import Login from '../components/Login';
 import HowItWorks from '../components/HowItWorks';
-
-const MineProgress = loadable(() => import('../components/MineProgress'));
 
 const socketUrl = process.env.GATSBY_SOCKET_URL;
 const socket = io.connect(socketUrl, {
