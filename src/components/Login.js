@@ -87,7 +87,6 @@ const Login = ({ setLoginVisible, setUserState }) => {
         loading: isSubmitting,
         disabled: isSubmitting,
       }}
-      style={{ top: 20 }}
     >
       <Form
         form={form}
