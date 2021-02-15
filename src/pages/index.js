@@ -277,6 +277,13 @@ const IndexPage = () => {
               >
                 Código fonte da api
               </a>{' '}
+              <a
+                href="https://github.com/MetflixLabs/lotocripto-bot"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Código fonte do bot
+              </a>{' '}
             </BottomParagraph>
           </BottomBlockWrapper>
         </ContentWrapper>
