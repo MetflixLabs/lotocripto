@@ -2,6 +2,8 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
 module.exports = {
   siteMetadata: {
     title: `LotoCripto`,
@@ -54,4 +56,19 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
+  developMiddleware: app => {
+    app.use(
+      createProxyMiddleware('/api', {
+        target: 'http://localhost:3333',
+        changeOrigin: true,
+        cookieDomainRewrite: 'localhost',
+      }),
+      createProxyMiddleware('/ws', {
+        target: 'http://localhost:4000',
+        ws: true,
+        changeOrigin: true,
+        cookieDomainRewrite: 'localhost',
+      })
+    );
+  },
 };
