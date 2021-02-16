@@ -11468,6 +11468,13 @@ react-compound-timer@^1.2.0:
   resolved "https://registry.yarnpkg.com/react-compound-timer/-/react-compound-timer-1.2.0.tgz#52df2980dce0b63ddaf5718235a51188cb223d1d"
   integrity sha512-BEFT0Z/+vusfAy4Ci1+G5lr8mI+dk3ddRJuu1DIYA5xGS+5P+M0o4krHmFMKgHuaIY9H3xx0KCvf3ilb1+HFWA==
 
+react-confetti@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/react-confetti/-/react-confetti-6.0.0.tgz#d1817dba4ad8d1a8742689db68d8b4bb145ea43e"
+  integrity sha512-gPuMIiJcpRFtyv3LvWKOvXxwbm1X9fyWT3wQsIMmmM7UhW3u84Te/xqfee4c0gicQXli8zCfIDkOlZyrHBk7pw==
+  dependencies:
+    tween-functions "^1.2.0"
+
 react-dev-utils@^4.2.3:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-4.2.3.tgz#5b42d9ea58d5e9e017a2f57a40a8af408a3a46fb"
@@ -13183,6 +13190,16 @@ svgo@1.3.2, svgo@^1.0.0:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
+sweetalert2-react-content@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/sweetalert2-react-content/-/sweetalert2-react-content-3.3.0.tgz#fa89ad224d19ec0afd8cf13a86febbee2484debd"
+  integrity sha512-COLwTsyxwa2yYeDMRRlGzriS29C/ZlwHh7vlU0yzhkP8LV6yv5jVb0p9CqemCUrgHdoEhoYOiqekdJxJydt4sw==
+
+sweetalert2@^10.15.0:
+  version "10.15.0"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-10.15.0.tgz#b387db1fc04aafe50c66d76f6685a80bfaf44791"
+  integrity sha512-zh/4URSGH1b2RrJuPHI9nzcKsg1qMuRCNkmgVILJ+sQavXQn5jRx+ocCUN15vdGi05oavwdbMaXg2qjgr9Lplw==
+
 symbol-observable@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
@@ -13554,6 +13571,11 @@ tunnel-agent@^0.6.0:
   integrity sha1-J6XeoGs2sEoKmWZ3SykIaPD8QP0=
   dependencies:
     safe-buffer "^5.0.1"
+
+tween-functions@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/tween-functions/-/tween-functions-1.2.0.tgz#1ae3a50e7c60bb3def774eac707acbca73bbc3ff"
+  integrity sha1-GuOlDnxguz3vd06scHrLynO7w/8=
 
 type-check@~0.3.2:
   version "0.3.2"

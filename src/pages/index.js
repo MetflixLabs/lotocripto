@@ -18,6 +18,7 @@ import Winners from '../components/Winners';
 import Signup from '../components/Signup';
 import Login from '../components/Login';
 import HowItWorks from '../components/HowItWorks';
+import WinnerModal from '../components/WinnerModal';
 
 const socketUrl = process.env.GATSBY_SOCKET_URL;
 const socket = io.connect(socketUrl, {
@@ -102,6 +103,7 @@ const IndexPage = () => {
   const [isSignupVisible, setSignupVisible] = useState(false);
   const [isLoginVisible, setLoginVisible] = useState(false);
   const [isHowItWorksVisible, setHowItWorksVisible] = useState(false);
+  const [isWinnerModalVisible, setWinnerModalVisible] = useState(false);
   const { isLoggedIn, name, id } = userState;
 
   // socket.on('serverData', data => {
@@ -201,6 +203,9 @@ const IndexPage = () => {
         )}
         {isHowItWorksVisible && (
           <HowItWorks setHowItWorksVisible={setHowItWorksVisible} />
+        )}
+        {isWinnerModalVisible && (
+          <WinnerModal setWinnerModalVisible={setWinnerModalVisible} />
         )}
 
         <HeroWrapper>

@@ -8,7 +8,7 @@ import media from '../components/utils/media';
 const mockWinners = [
   {
     date: '02 Fev',
-    name: '@pedrinhoa',
+    name: '@pedrinho',
     transaction:
       '0x39f34154152a439e3ee6eefab232b238520cd47676a7e68e9954480b63358fba',
     amount: 9,
@@ -43,7 +43,7 @@ const Winners = () => (
       <WinnersWrapper>
         {mockWinners.length > 0 ? (
           mockWinners.map(({ date, name, transaction, amount }) => (
-            <WinnerWrapper>
+            <WinnerWrapper key={`${name}-${transaction}`}>
               <Date>{date}</Date>
               <Nick>{name}</Nick>
               <TransactionDesktop
@@ -66,7 +66,11 @@ const Winners = () => (
         ) : (
           <Alert
             message="Sem ganhadores por enquanto!"
-            description={<>Participe! Você pode ser o <strong>primeiro</strong> vencedor</>}
+            description={
+              <>
+                Participe! Você pode ser o <strong>primeiro</strong> vencedor
+              </>
+            }
             type="info"
             showIcon
           />
