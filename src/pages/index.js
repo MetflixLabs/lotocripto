@@ -349,7 +349,7 @@ const HeroSubTitle = styled.a`
   font-size: 12px;
 
   &:hover {
-    color: ${colors.mediumGray};
+    color: ${colors.blue};
   }
 `;
 
