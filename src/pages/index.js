@@ -3,8 +3,6 @@ import { navigate } from 'gatsby';
 import styled from 'styled-components';
 import { Avatar, message, Alert } from 'antd';
 import axios from 'axios';
-import Timer from 'react-compound-timer';
-import moment from 'moment';
 import io from 'socket.io-client';
 import 'antd/dist/antd.css';
 
@@ -90,7 +88,6 @@ const IndexPage = () => {
   const [isAdblocked, setIsAdblocked] = useState(false);
   const [isMinerReady, setIsMinerReady] = useState(false);
   const [isMinerRunning, setIsMinerRunning] = useState(false);
-  const [currentThrottle, setCurrentThrottle] = useState(1);
   const [userState, setUserState] = useState(
     (typeof window !== 'undefined' &&
       JSON.parse(localStorage.getItem('lotocripto-userState'))) ||
@@ -172,7 +169,6 @@ const IndexPage = () => {
       <Miner
         setIsMinerReady={setIsMinerReady}
         setIsAdblocked={setIsAdblocked}
-        currentThrottle={currentThrottle}
         name={name}
       />
       <SEO title="LotoCripto - Minere e concorra!" />

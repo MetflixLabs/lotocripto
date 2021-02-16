@@ -121,7 +121,7 @@ const MineProgress = ({
         </ButtonWrapper>
         <DiscordEmbed
           title="discord"
-          src="https://titanembeds.com/embed/402212992273350657?defaultchannel=808025051240333333&theme=IceWyvern"
+          src="https://titanembeds.com/embed/402212992273350657?defaultchannel=808025051240333333"
           height="400"
           width="100%"
           frameborder="0"
@@ -205,7 +205,7 @@ const DiscordEmbed = styled.iframe`
     display: block;
     margin-top: 26px;
     border-radius: 4px;
-    border: 1px solid ${colors.green};
+    border: 1px solid ${colors.lightGray};
   `};
 `;
 

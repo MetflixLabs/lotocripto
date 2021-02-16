@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Alert } from 'antd';
+import { Alert, Tag } from 'antd';
 
 import colors from '../components/utils/colors';
 import media from '../components/utils/media';
@@ -60,7 +60,9 @@ const Winners = () => (
               >
                 {`${transaction.slice(0, 6)}...`}
               </TransactionMobile>
-              <Amount>+{amount} MINTME</Amount>
+              <Tag color="green">
+                <Amount>+{amount} MINTME</Amount>
+              </Tag>
             </WinnerWrapper>
           ))
         ) : (
@@ -79,7 +81,7 @@ const Winners = () => (
     </Wrapper>
     <DiscordEmbed
       title="discord"
-      src="https://titanembeds.com/embed/402212992273350657?defaultchannel=808025051240333333&theme=IceWyvern"
+      src="https://titanembeds.com/embed/402212992273350657?defaultchannel=808025051240333333"
       height="400"
       width="100%"
       frameborder="0"
@@ -172,7 +174,7 @@ const DiscordEmbed = styled.iframe`
   display: block;
   margin-top: 26px;
   border-radius: 4px;
-  border: 1px solid ${colors.green};
+  border: 1px solid ${colors.lightGray};
 
   ${media.tablet`
     display: none;
