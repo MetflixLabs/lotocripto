@@ -206,7 +206,16 @@ const IndexPage = () => {
 
         <HeroWrapper>
           <HeroDescriptionWrapper>
-            <HeroTitle>LotoCripto</HeroTitle>
+            <HeroTitle>
+              LotoCripto{' '}
+              <HeroSubTitle
+                href="https://twitter.com/MetflixLabs"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                powered by @MetflixLabs
+              </HeroSubTitle>
+            </HeroTitle>
           </HeroDescriptionWrapper>
           <HeroCTA>
             {!isLoggedIn ? (
@@ -333,6 +342,15 @@ const HeroTitle = styled.div`
   z-index: 2;
   position: relative;
   color: ${colors.green};
+`;
+
+const HeroSubTitle = styled.a`
+  color: ${colors.mediumGray};
+  font-size: 12px;
+
+  &:hover {
+    color: ${colors.mediumGray};
+  }
 `;
 
 const ContentWrapper = styled.div`
