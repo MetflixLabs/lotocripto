@@ -79,7 +79,7 @@ const Signup = ({ setSignupVisible, setLoginVisible }) => {
             <div>
               Você não poderá alterar seus dados posteriormente. É importante{' '}
               <a
-                href="https://www.mintme.com"
+                href="https://imgur.com/a/VJWPmSZ"
                 target="_blank"
                 rel="noopener noreferrer"
               >
