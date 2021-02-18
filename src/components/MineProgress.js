@@ -230,19 +230,20 @@ const StatusWrapper = styled.div`
 `;
 
 const SCountdown = styled(Countdown)`
+  display: inline;
+
   div {
-    line-height: 14px;
+    line-height: 9px;
+    display: inline;
   }
   span {
     color: ${colors.red};
     font-size: 12px;
     font-weight: bold;
-    padding: 0 3px;
   }
 `;
 
 const Status = styled.div`
-  display: flex;
   color: ${props => (props.color ? props.color : colors.mediumGray)};
 `;
 
