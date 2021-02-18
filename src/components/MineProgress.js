@@ -198,7 +198,7 @@ const Wrapper = styled.div`
 const InfoWrapper = styled.div`
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   margin: 0 -10px;
 `;
 
