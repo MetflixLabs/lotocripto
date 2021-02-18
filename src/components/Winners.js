@@ -98,12 +98,11 @@ const Wrapper = styled.div`
   border-radius: 4px;
   box-shadow: 0px 0px 2px 1px rgb(0 0 0 / 5%);
   min-width: 100%;
-  margin: 20px 0 0;
+  margin: 0 auto;
   padding: 20px;
 
   ${media.tablet`
     min-width: 340px;
-    margin: 0 20px;
   `};
 
   ${media.desktop`
@@ -152,6 +151,7 @@ const Transaction = styled.a`
 
 const TransactionDesktop = styled(Transaction)`
   display: none;
+  text-overflow: ellipsis;
 
   ${media.phoneLandscape`
     display: block;
@@ -160,6 +160,7 @@ const TransactionDesktop = styled(Transaction)`
 
 const TransactionMobile = styled(Transaction)`
   display: block;
+  text-overflow: ellipsis;
 
   ${media.phoneLandscape`
     display: none;
