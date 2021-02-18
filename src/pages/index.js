@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Avatar, message, Alert } from 'antd';
 import axios from 'axios';
 import io from 'socket.io-client';
+import { isEmpty } from 'lodash';
 import 'antd/dist/antd.css';
 
 import Miner from '../components/core/Miner';
@@ -93,19 +94,14 @@ const IndexPage = () => {
       JSON.parse(localStorage.getItem('lotocripto-userState'))) ||
       JSON.stringify({ isLoggedIn: false, id: null, name: null })
   );
-  const [serverData, setServerData] = useState({
-    balance: '-',
-    onlineUsers: '-',
-  });
+
   const [isSignupVisible, setSignupVisible] = useState(false);
   const [isLoginVisible, setLoginVisible] = useState(false);
   const [isHowItWorksVisible, setHowItWorksVisible] = useState(false);
   const [isWinnerModalVisible, setWinnerModalVisible] = useState(false);
+  const [isNoWinnerEligible, setNoWinnerEligible] = useState(false);
+  const [winnerNick, setWinnerNick] = useState(false);
   const { isLoggedIn, name, id } = userState;
-
-  // socket.on('serverData', data => {
-  //   setServerData(data);
-  // });
 
   useEffect(() => {
     const apiUrl = process.env.GATSBY_API_URL;
@@ -164,6 +160,19 @@ const IndexPage = () => {
       });
   }, []);
 
+  socket.on('round_winner', data => {
+    if (isEmpty(data)) {
+      setNoWinnerEligible(true);
+    } else {
+      const { name } = data;
+
+      setWinnerNick(name);
+      setNoWinnerEligible(false);
+      setWinnerModalVisible(false);
+      setWinnerModalVisible(true);
+    }
+  });
+
   return (
     <Layout>
       <Miner
@@ -173,18 +182,23 @@ const IndexPage = () => {
       />
       <SEO title="LotoCripto - Minere e concorra!" />
       <Wrapper>
-        <Alert
-          message="Atenção"
-          description={
-            <div>
-              Nossa plataforma ainda está em desenvolvimento. Não é recomendado
-              que você se cadastre e nem tente participar de sorteios por
-              enquanto.
-            </div>
-          }
-          type="warning"
-          showIcon
-        />
+        {isNoWinnerEligible && (
+          <Alert
+            message="A qualquer momento!"
+            description={
+              <div>
+                A meta para o sorteio foi atingida mas ainda não há um sorteado
+                elegível.{' '}
+                <strong>
+                  Continue minerando até entrar na rodada e o sorteado pode ser
+                  você!
+                </strong>
+              </div>
+            }
+            type="info"
+            showIcon
+          />
+        )}
         {isSignupVisible && (
           <Signup
             setSignupVisible={setSignupVisible}
@@ -201,7 +215,10 @@ const IndexPage = () => {
           <HowItWorks setHowItWorksVisible={setHowItWorksVisible} />
         )}
         {isWinnerModalVisible && (
-          <WinnerModal setWinnerModalVisible={setWinnerModalVisible} />
+          <WinnerModal
+            setWinnerModalVisible={setWinnerModalVisible}
+            winnerNick={`@${winnerNick}`}
+          />
         )}
 
         <HeroWrapper>
@@ -323,6 +340,7 @@ const HeroDescriptionWrapper = styled.div`
 `;
 
 const HeroCTA = styled.div`
+  cursor: pointer;
   display: flex;
 `;
 

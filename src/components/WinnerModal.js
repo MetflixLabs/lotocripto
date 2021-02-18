@@ -10,13 +10,11 @@ import colors from '../components/utils/colors';
 
 const MySwal = withReactContent(Swal);
 
-const mockName = '@pedrinho';
-
-const WinnerModal = ({ setWinnerModalVisible }) => {
+const WinnerModal = ({ setWinnerModalVisible, winnerNick }) => {
   useEffect(() => {
     MySwal.fire({
       icon: 'success',
-      title: `${mockName} é o sorteado da vez!`,
+      title: `${winnerNick} é o sorteado da vez!`,
       text: 'Não foi você? então continue minerando! Você pode ser o próximo!',
       showConfirmButton: false,
       footer: (

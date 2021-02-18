@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Progress, Statistic, Button } from 'antd';
+import { Progress, Statistic, Button, Skeleton, message } from 'antd';
 import Timer from 'react-compound-timer';
 import loadable from '@loadable/component';
 
@@ -34,8 +34,32 @@ const MineProgress = ({
 }) => {
   const [isEligible, setEligible] = useState(false);
   const [eligibleTimer, setEligibleTimer] = useState(0);
+  const [isJoining, setJoining] = useState(false);
   const [hashes, setHashes] = useState(0);
-  const percent = Math.floor((4.4 / 10.0) * 100); // replace 4.4 by 'reward' (mock)
+  const [totalBalance, setTotalBalance] = useState({
+    total: 0,
+    target: 0,
+  });
+  const { total, target } = totalBalance;
+  const percent = Math.floor((total / target) * 100);
+
+  socket.on('total_balance', data => {
+    setTotalBalance(data);
+  });
+
+  socket.on('join_success', data => {
+    message.success({ content: data, key: 'round_message', duration: 5 });
+    toggleMiner();
+    setEligibleTimer(Date.now() + 1000 * 60 * 1);
+    setHashes(0);
+    setJoining(false);
+  });
+
+  socket.on('join_failed', data => {
+    message.error({ content: data, key: 'round_message', duration: 5 });
+    setHashes(0);
+    setJoining(false);
+  });
 
   if (isMinerRunning && hashes === 0) {
     window.hashesInterval = setInterval(() => {
@@ -45,11 +69,18 @@ const MineProgress = ({
     clearInterval(typeof window !== 'undefined' && window.hashesInterval);
   }
 
+  if (!target) {
+    return <Skeleton active paragraph={{ rows: 4 }} />;
+  }
+
   return (
     <Wrapper>
       <InfoWrapper>
-        <SStatistic title="Quantia atual" value="0.00000000" />
-        <SStatistic title="Quantia até o sorteio" value="10.00000000" />
+        <SStatistic title="Quantia atual" value={total} />
+        <SStatistic
+          title="Quantia até o sorteio"
+          value={parseFloat(target).toFixed(8)}
+        />
       </InfoWrapper>
       <ProgressWrapper>
         <Progress
@@ -107,13 +138,26 @@ const MineProgress = ({
             isMinerRunning={isMinerRunning}
             isMinerReady={isMinerReady}
             isLoggedIn={isLoggedIn}
+            isJoining={isJoining}
             onClickAction={() => {
-              toggleMiner();
-              setEligibleTimer(Date.now() + 1000 * 60 * 1);
-              setHashes(0);
-              !isMinerRunning && socket.emit('join_round', { userId });
-              isMinerRunning && socket.emit('leave_round', { userId });
-              isMinerRunning && setEligible(false);
+              if (!isMinerRunning) {
+                setJoining(true);
+                socket.emit('leave_round', { userId });
+                socket.emit('join_round', { userId });
+                message.loading({
+                  content: 'Entrando na rodada...',
+                  key: 'round_message',
+                });
+              } else {
+                socket.emit('leave_round', { userId });
+                toggleMiner();
+                setEligible(false);
+                message.success({
+                  content: 'Você saiu da rodada.',
+                  key: 'round_message',
+                  duration: 5,
+                });
+              }
             }}
           >
             {getButtonText(isLoggedIn, isMinerRunning, isMinerReady)}

@@ -23,6 +23,7 @@
     "gatsby-source-filesystem": "^2.1.56",
     "gatsby-transformer-sharp": "^2.3.19",
     "http-proxy-middleware": "^1.0.6",
+    "lodash": "^4.17.20",
     "moment": "^2.24.0",
     "nuka-carousel": "^4.6.6",
     "prop-types": "^15.7.2",
