@@ -70,7 +70,11 @@ const MineProgress = ({
   }
 
   if (!target) {
-    return <Skeleton active paragraph={{ rows: 4 }} />;
+    return (
+      <Wrapper>
+        <Skeleton active paragraph={{ rows: 4 }} />
+      </Wrapper>
+    );
   }
 
   return (
