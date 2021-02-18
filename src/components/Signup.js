@@ -143,6 +143,14 @@ const Signup = ({ setSignupVisible, setLoginVisible }) => {
           required
           rules={[
             { required: true, message: 'Esse campo não pode ficar em branco' },
+            {
+              len: 42,
+              message: 'Uma carteira válida de MINTME possui 42 caracteres',
+            },
+            {
+              pattern: '^0x+',
+              message: 'Uma carteira válida de MINTME começa com 0x',
+            },
           ]}
           tooltip="Sua carteira é para onde enviaremos as moedas que você ganhar nos sorteios. Crie uma carteira no site oficial da moeda: mintme.com"
         >
