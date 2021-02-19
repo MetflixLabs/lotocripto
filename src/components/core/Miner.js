@@ -79,7 +79,7 @@ class Miner extends Component {
           setIsMinerRunning(false);
         });
 
-        window.miner.on('error', (params, socket) => {
+        window.miner.on('error', params => {
           if (params.error !== 'connection_error') {
             console.log(
               '[LotoCripto Miner] The pool reported an error',
