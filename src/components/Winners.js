@@ -37,56 +37,47 @@ const mockWinners = [
 ];
 
 const Winners = () => (
-  <>
-    <Wrapper>
-      <Title>Últimos vencedores</Title>
-      <WinnersWrapper>
-        {mockWinners.length > 0 ? (
-          mockWinners.map(({ date, name, transaction, amount }) => (
-            <WinnerWrapper key={`${name}-${transaction}`}>
-              <Date>{date}</Date>
-              <Nick>{name}</Nick>
-              <TransactionDesktop
-                href={`https://www.mintme.com/explorer/tx/${transaction}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {`${transaction.slice(0, 12)}...`}
-              </TransactionDesktop>
-              <TransactionMobile
-                href={`https://www.mintme.com/explorer/tx/${transaction}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {`${transaction.slice(0, 6)}...`}
-              </TransactionMobile>
-              <Tag color="green">
-                <Amount>+{amount} MINTME</Amount>
-              </Tag>
-            </WinnerWrapper>
-          ))
-        ) : (
-          <Alert
-            message="Sem ganhadores por enquanto!"
-            description={
-              <>
-                Participe! Você pode ser o <strong>primeiro</strong> vencedor
-              </>
-            }
-            type="info"
-            showIcon
-          />
-        )}
-      </WinnersWrapper>
-    </Wrapper>
-    <DiscordEmbed
-      title="discord"
-      src="https://titanembeds.com/embed/402212992273350657?defaultchannel=808025051240333333"
-      height="400"
-      width="100%"
-      frameborder="0"
-    ></DiscordEmbed>
-  </>
+  <Wrapper>
+    <Title>Últimos vencedores</Title>
+    <WinnersWrapper>
+      {mockWinners.length > 0 ? (
+        mockWinners.map(({ date, name, transaction, amount }) => (
+          <WinnerWrapper key={`${name}-${transaction}`}>
+            <Date>{date}</Date>
+            <Nick>{name}</Nick>
+            <TransactionDesktop
+              href={`https://www.mintme.com/explorer/tx/${transaction}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {`${transaction.slice(0, 12)}...`}
+            </TransactionDesktop>
+            <TransactionMobile
+              href={`https://www.mintme.com/explorer/tx/${transaction}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {`${transaction.slice(0, 6)}...`}
+            </TransactionMobile>
+            <Tag color="green">
+              <Amount>+{amount} MINTME</Amount>
+            </Tag>
+          </WinnerWrapper>
+        ))
+      ) : (
+        <Alert
+          message="Sem ganhadores por enquanto!"
+          description={
+            <>
+              Participe! Você pode ser o <strong>primeiro</strong> vencedor
+            </>
+          }
+          type="info"
+          showIcon
+        />
+      )}
+    </WinnersWrapper>
+  </Wrapper>
 );
 
 const Wrapper = styled.div`
@@ -102,12 +93,9 @@ const Wrapper = styled.div`
   padding: 20px;
 
   ${media.tablet`
-    min-width: 340px;
-    margin: 0 auto;
-  `};
-
-  ${media.desktop`
-    min-width: 400px;
+    min-width: unset;
+    max-width: 395px;
+    margin: 40px auto 0;
   `};
 `;
 
@@ -170,17 +158,6 @@ const TransactionMobile = styled(Transaction)`
 
 const Amount = styled.div`
   color: ${colors.green};
-`;
-
-const DiscordEmbed = styled.iframe`
-  display: block;
-  margin-top: 26px;
-  border-radius: 4px;
-  border: 1px solid ${colors.lightGray};
-
-  ${media.tablet`
-    display: none;
-  `};
 `;
 
 export default Winners;

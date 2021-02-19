@@ -108,8 +108,8 @@ const MineProgress = ({
           showInfo={false}
           trailColor={colors.mediumGray}
           strokeColor={{
-            from: colors.lightGreen,
-            to: colors.green,
+            from: colors.green,
+            to: colors.lightGreen,
           }}
           strokeWidth={20}
         />
@@ -184,32 +184,16 @@ const MineProgress = ({
             {getButtonText(isLoggedIn, isMinerRunning, isMinerReady)}
           </MineButton>
         </ButtonWrapper>
-        <DiscordEmbed
-          title="discord"
-          src="https://titanembeds.com/embed/402212992273350657?defaultchannel=808025051240333333"
-          height="400"
-          width="100%"
-          frameborder="0"
-        ></DiscordEmbed>
       </ProgressWrapper>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 100%;
-  margin: auto;
-
-  ${media.tablet`
-    min-width: 200px;
-    max-width: 500px;
-    margin: 0 20px;
-  `};
 `;
 
 const InfoWrapper = styled.div`
@@ -262,17 +246,6 @@ const SCountdown = styled(Countdown)`
 
 const Status = styled.div`
   color: ${props => (props.color ? props.color : colors.mediumGray)};
-`;
-
-const DiscordEmbed = styled.iframe`
-  display: none;
-
-  ${media.tablet`
-    display: block;
-    margin-top: 26px;
-    border-radius: 4px;
-    border: 1px solid ${colors.lightGray};
-  `};
 `;
 
 export default MineProgress;

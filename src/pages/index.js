@@ -24,8 +24,14 @@ const socket = io.connect(socketUrl, {
   path: '/ws',
 });
 
-const toggleMiner = (isAdblocked, isMinerRunning, setIsMinerRunning) => {
+const toggleMiner = (
+  isAdblocked,
+  isMinerRunning,
+  setIsMinerRunning,
+  userId
+) => {
   if (isAdblocked) {
+    socket.emit('leave_round', { userId });
     return navigate('/ad-block');
   }
 
@@ -257,19 +263,35 @@ const IndexPage = () => {
         </HeroWrapper>
         <ContentWrapper>
           <ContentInnerWrapper>
-            <MineProgress
-              toggleMiner={() =>
-                isMinerReady &&
-                toggleMiner(isAdblocked, isMinerRunning, setIsMinerRunning)
-              }
-              isMinerReady={isMinerReady}
-              isMinerRunning={isMinerRunning}
-              setHowItWorksVisible={setHowItWorksVisible}
-              isLoggedIn={isLoggedIn}
-              socket={socket}
-              userId={id}
-            />
-            <Winners />
+            <SideWrapper>
+              <MineProgress
+                toggleMiner={() =>
+                  isMinerReady &&
+                  toggleMiner(
+                    isAdblocked,
+                    isMinerRunning,
+                    setIsMinerRunning,
+                    id
+                  )
+                }
+                isMinerReady={isMinerReady}
+                isMinerRunning={isMinerRunning}
+                setHowItWorksVisible={setHowItWorksVisible}
+                isLoggedIn={isLoggedIn}
+                socket={socket}
+                userId={id}
+              />
+              <Winners />
+            </SideWrapper>
+            <DiscordWrapper>
+              <DiscordEmbed
+                title="discord"
+                src="https://titanembeds.com/embed/402212992273350657?defaultchannel=808025051240333333"
+                height="400"
+                width="100%"
+                frameborder="0"
+              ></DiscordEmbed>
+            </DiscordWrapper>
           </ContentInnerWrapper>
           <BottomBlockWrapper>
             <BottomParagraph>
@@ -360,15 +382,27 @@ const HeroTitle = styled.div`
   z-index: 2;
   position: relative;
   color: ${colors.green};
+  display: flex;
+  flex-direction: column;
+
+  ${media.phoneLandscape`
+    display: block;
+    flex-direction: unset;
+  `};
 `;
 
 const HeroSubTitle = styled.a`
   color: ${colors.mediumGray};
   font-size: 12px;
+  line-height: 2px;
 
   &:hover {
     color: ${colors.blue};
   }
+
+  ${media.phoneLandscape`
+    line-height: inherit;
+  `};
 `;
 
 const ContentWrapper = styled.div`
@@ -395,6 +429,22 @@ const ContentInnerWrapper = styled.div`
   `}
 `;
 
+const SideWrapper = styled.div`
+  flex: 1;
+  min-width: 100%;
+  margin: auto;
+
+  ${media.tablet`
+    min-width: 385px;
+    max-width: 500px;
+    margin: 0 60px 0 20px;
+  `};
+
+  ${media.desktop`
+    min-width: 400px;
+  `};
+`;
+
 const BottomParagraph = styled.p`
   display: flex;
   flex-direction: column;
@@ -419,6 +469,24 @@ const BottomBlockWrapper = styled.div`
   ${media.tablet`
     padding: 40px 0;
   `};
+`;
+
+const DiscordWrapper = styled.div`
+  flex: 1;
+  width: 100%;
+  margin-top: 26px;
+
+  ${media.tablet`
+    width: unset;
+    max-width: 450px;
+    margin-top: 0;
+  `};
+`;
+
+const DiscordEmbed = styled.iframe`
+  display: block;
+  border-radius: 4px;
+  border: 1px solid ${colors.lightGray};
 `;
 
 export default IndexPage;
