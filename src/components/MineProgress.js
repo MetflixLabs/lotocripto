@@ -40,10 +40,12 @@ const MineProgress = ({
     total: 0,
     target: 0,
   });
+  const [hasReceivedBalance, setReceivedBalance] = useState(false);
   const { total, target } = totalBalance;
   const percent = Math.floor((total / target) * 100);
 
   socket.on('total_balance', data => {
+    setReceivedBalance(true);
     setTotalBalance(data);
   });
 
@@ -70,6 +72,20 @@ const MineProgress = ({
   }
 
   if (!target) {
+    if (!hasReceivedBalance) {
+      message.loading({
+        content: 'Aguarde enquanto conectamos você aos nossos sistemas...',
+        key: 'waiting_balance',
+        duration: 0,
+      });
+    } else {
+      message.success({
+        content: 'Você está conectado a nossa rede!',
+        key: 'waiting_balance',
+        duration: 5,
+      });
+    }
+
     return (
       <Wrapper>
         <Skeleton active paragraph={{ rows: 4 }} />
@@ -151,6 +167,7 @@ const MineProgress = ({
                 message.loading({
                   content: 'Entrando na rodada...',
                   key: 'round_message',
+                  duration: 0,
                 });
               } else {
                 socket.emit('leave_round', { userId });

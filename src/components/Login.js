@@ -11,7 +11,11 @@ const submitLogin = (values, setSubmitting, setLoginVisible, setUserState) => {
   const { name, password } = values;
 
   setSubmitting(true);
-  message.loading({ content: 'Entrando...', key: 'login-message' });
+  message.loading({
+    content: 'Entrando...',
+    key: 'login-message',
+    duration: 0,
+  });
 
   axios
     .post(`${apiUrl}/login`, { name, password }, { withCredentials: true })

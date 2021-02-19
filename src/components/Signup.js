@@ -17,7 +17,11 @@ const submitSignup = (
   const { name, email, password, walletAddress } = values;
 
   setSubmitting(true);
-  message.loading({ content: 'Criando sua conta...', key: 'signup-message' });
+  message.loading({
+    content: 'Criando sua conta...',
+    key: 'signup-message',
+    duration: 0,
+  });
 
   axios
     .post(
