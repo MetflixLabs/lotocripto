@@ -9,6 +9,7 @@ import colors from '../components/utils/colors';
 
 const submitSignup = (
   values,
+  captcha,
   setSubmitting,
   setSignupVisible,
   setLoginVisible
@@ -26,7 +27,7 @@ const submitSignup = (
   axios
     .post(
       `${apiUrl}/users`,
-      { name, email, password, walletAddress },
+      { name, email, password, walletAddress, captcha },
       { withCredentials: true }
     )
     .then(res => {
@@ -57,13 +58,13 @@ const submitSignup = (
 const Signup = ({ setSignupVisible, setLoginVisible }) => {
   const [form] = Form.useForm();
   const [isSubmitting, setSubmitting] = useState(false);
-  const [isCaptchaOk, setCaptchaOk] = useState(false);
+  const [captcha, setCaptcha] = useState(false);
 
   return (
     <SignupModal
       title="Registrar"
       visible
-      onOk={() => isCaptchaOk && form.submit()}
+      onOk={() => captcha && form.submit()}
       onCancel={() => !isSubmitting && setSignupVisible(false)}
       cancelText="Voltar"
       okText="Confirmar"
@@ -72,7 +73,7 @@ const Signup = ({ setSignupVisible, setLoginVisible }) => {
       }}
       okButtonProps={{
         loading: isSubmitting,
-        disabled: isSubmitting || !isCaptchaOk,
+        disabled: isSubmitting || !captcha,
       }}
       style={{ top: 20 }}
     >
@@ -101,7 +102,13 @@ const Signup = ({ setSignupVisible, setLoginVisible }) => {
         layout="vertical"
         requiredMark
         onFinish={values =>
-          submitSignup(values, setSubmitting, setSignupVisible, setLoginVisible)
+          submitSignup(
+            values,
+            captcha,
+            setSubmitting,
+            setSignupVisible,
+            setLoginVisible
+          )
         }
       >
         <Form.Item
@@ -192,7 +199,7 @@ const Signup = ({ setSignupVisible, setLoginVisible }) => {
           <CaptchaWrapper>
             <ReCAPTCHA
               sitekey="6LdxNFkaAAAAAP-BrpRgIKz5q-mdkiIleOcnL62q"
-              onChange={value => setCaptchaOk(true)}
+              onChange={value => setCaptcha(value)}
             />
           </CaptchaWrapper>
         </Form.Item>
