@@ -69,8 +69,8 @@ class Miner extends Component {
             '[LotoCripto Miner] The connection to the pool was closed - End of the job!'
           );
 
-          message.error({
-            content: 'Você saiu da rodada por problemas no minerador.',
+          message.success({
+            content: 'Você saiu da rodada.',
             key: 'round_message',
             duration: 5,
           });

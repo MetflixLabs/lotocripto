@@ -218,11 +218,6 @@ const MineProgress = ({
                 socket.emit('leave_round', { userId });
                 toggleMiner();
                 setEligible(false);
-                message.success({
-                  content: 'Você saiu da rodada.',
-                  key: 'round_message',
-                  duration: 5,
-                });
               }
             }}
           >
