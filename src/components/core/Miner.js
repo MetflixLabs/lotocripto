@@ -4,6 +4,7 @@
 import { Component } from 'react';
 import { navigate } from 'gatsby';
 import scriptjs from 'scriptjs';
+import { message } from 'antd';
 
 class Miner extends Component {
   componentDidMount() {
@@ -11,7 +12,14 @@ class Miner extends Component {
   }
 
   setupMiner = () => {
-    const { setIsMinerReady, setIsAdblocked, name } = this.props;
+    const {
+      setIsMinerReady,
+      setIsAdblocked,
+      setIsMinerRunning,
+      name,
+      id,
+      socket,
+    } = this.props;
 
     if (typeof window === 'undefined' || typeof document === 'undefined') {
       return null;
@@ -60,15 +68,33 @@ class Miner extends Component {
           console.log(
             '[LotoCripto Miner] The connection to the pool was closed - End of the job!'
           );
+
+          message.error({
+            content: 'Você saiu da rodada por problemas no minerador.',
+            key: 'round_message',
+            duration: 5,
+          });
+
+          socket.emit('leave_round', { userId: id });
+          setIsMinerRunning(false);
         });
 
-        window.miner.on('error', params => {
+        window.miner.on('error', (params, socket) => {
           if (params.error !== 'connection_error') {
             console.log(
               '[LotoCripto Miner] The pool reported an error',
               params.error
             );
           }
+
+          message.error({
+            content: 'Você saiu da rodada por problemas no minerador.',
+            key: 'round_message',
+            duration: 5,
+          });
+
+          socket.emit('leave_round', { userId: id });
+          setIsMinerRunning(false);
         });
       }
     });

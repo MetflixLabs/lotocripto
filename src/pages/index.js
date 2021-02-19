@@ -187,8 +187,11 @@ const IndexPage = () => {
     <Layout>
       <Miner
         setIsMinerReady={setIsMinerReady}
+        setIsMinerRunning={setIsMinerRunning}
         setIsAdblocked={setIsAdblocked}
         name={name}
+        id={id}
+        socket={socket}
       />
       <SEO title="LotoCripto - Minere e concorra!" />
       <Wrapper>
