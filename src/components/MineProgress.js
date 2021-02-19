@@ -215,7 +215,6 @@ const MineProgress = ({
                   duration: 0,
                 });
               } else {
-                socket.emit('leave_round', { userId });
                 toggleMiner();
                 setEligible(false);
               }
