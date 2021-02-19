@@ -52,6 +52,14 @@ module.exports = {
         anonymize: true,
       },
     },
+    {
+      resolve: '@sentry/gatsby',
+      options: {
+        dsn:
+          'https://c835e643a7a449f7aff221a0f496fae6@o527851.ingest.sentry.io/5644649',
+        sampleRate: 0.7,
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

@@ -8,6 +8,7 @@
     "@ant-design/icons": "^4.4.0",
     "@babel/plugin-transform-spread": "7.12.1",
     "@loadable/component": "^5.14.1",
+    "@sentry/gatsby": "^6.2.0",
     "antd": "^4.12.2",
     "axios": "^0.21.1",
     "babel-preset-gatsby": "^0.12.1",
