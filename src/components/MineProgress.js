@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Progress, Statistic, Button, Skeleton, message } from 'antd';
+import {
+  Progress,
+  Statistic,
+  Button,
+  Skeleton,
+  message,
+  Tag,
+  Tooltip,
+} from 'antd';
 import Timer from 'react-compound-timer';
 import loadable from '@loadable/component';
 
 import colors from '../components/utils/colors';
-import media from '../components/utils/media';
 
 const MineButton = loadable(() => import('./MineButton'));
 
@@ -22,6 +29,17 @@ const getButtonText = (isLoggedIn, isMinerRunning) => {
     return 'Sair da rodada';
   }
 };
+
+const mockOnlineUsers = [
+  'takashi',
+  'joaozinho',
+  'pedro',
+  'ze',
+  'teste',
+  'manolo',
+];
+
+const mockFarmingUsers = ['pedro', 'manolo'];
 
 const MineProgress = ({
   toggleMiner,
@@ -95,6 +113,34 @@ const MineProgress = ({
 
   return (
     <Wrapper>
+      <UsersInfoWrapper>
+        <Tooltip
+          color={colors.green}
+          placement="bottom"
+          title={
+            <>
+              {mockOnlineUsers.map(mockOnlineUser => (
+                <UserTooltip>{mockOnlineUser}</UserTooltip>
+              ))}
+            </>
+          }
+        >
+          <Tag color={colors.green}>{mockOnlineUsers.length} Online</Tag>
+        </Tooltip>
+        <Tooltip
+          color={colors.orange}
+          placement="bottom"
+          title={
+            <>
+              {mockFarmingUsers.map(mockFarmingUser => (
+                <UserTooltip>{mockFarmingUser}</UserTooltip>
+              ))}
+            </>
+          }
+        >
+          <Tag color={colors.orange}>{mockFarmingUsers.length} Minerando</Tag>
+        </Tooltip>
+      </UsersInfoWrapper>
       <InfoWrapper>
         <SStatistic title="Quantia atual" value={total} />
         <SStatistic
@@ -195,6 +241,14 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+const UsersInfoWrapper = styled.div`
+  cursor: pointer;
+  align-self: flex-start;
+  margin-bottom: 20px;
+`;
+
+const UserTooltip = styled.div``;
 
 const InfoWrapper = styled.div`
   width: 100%;
