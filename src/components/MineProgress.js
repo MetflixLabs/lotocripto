@@ -208,7 +208,6 @@ const MineProgress = ({
             onClickAction={() => {
               if (!isMinerRunning) {
                 setJoining(true);
-                socket.emit('leave_round', { userId });
                 socket.emit('join_round', { userId });
                 message.loading({
                   content: 'Entrando na rodada...',
