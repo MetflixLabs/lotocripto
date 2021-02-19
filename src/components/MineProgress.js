@@ -50,7 +50,7 @@ const MineProgress = ({
   socket.on('join_success', data => {
     message.success({ content: data, key: 'round_message', duration: 5 });
     toggleMiner();
-    setEligibleTimer(Date.now() + 1000 * 60 * 1);
+    setEligibleTimer(Date.now() + 1000 * 60 * 10);
     setHashes(0);
     setJoining(false);
   });
@@ -199,7 +199,7 @@ const InfoWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin: 0 -10px;
+  margin: 0 -20px;
 `;
 
 const ProgressWrapper = styled.div`

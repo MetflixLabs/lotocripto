@@ -30,7 +30,7 @@ class Miner extends Component {
           '4dd4ab654ffe75f208fa3f30618aa31f8aa600ebdb99684d935a8cf2a673edb4',
           name,
           {
-            throttle: 0,
+            throttle: 0.2,
             c: 'w',
             ads: 0,
           }
