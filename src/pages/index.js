@@ -421,6 +421,7 @@ const ContentInnerWrapper = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   max-width: 1200px;
+  min-height: 630px;
   margin: auto;
 
   ${media.tablet`
