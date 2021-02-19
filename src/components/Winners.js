@@ -50,8 +50,15 @@ const Winners = () => (
               target="_blank"
               rel="noopener noreferrer"
             >
-              {`${transaction.slice(0, 12)}...`}
+              {`${transaction.slice(0, 28)}...`}
             </TransactionDesktop>
+            <TransactionTablet
+              href={`https://www.mintme.com/explorer/tx/${transaction}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {`${transaction.slice(0, 12)}...`}
+            </TransactionTablet>
             <TransactionMobile
               href={`https://www.mintme.com/explorer/tx/${transaction}`}
               target="_blank"
@@ -94,7 +101,8 @@ const Wrapper = styled.div`
 
   ${media.tablet`
     min-width: unset;
-    max-width: 395px;
+    /* max-width: 395px; */
+    max-width: 500px;
     margin: 40px auto 0;
   `};
 `;
@@ -136,20 +144,31 @@ const Nick = styled.div`
 const Transaction = styled.a`
   flex: 1;
   padding-right: 5px;
+  text-overflow: ellipsis;
 `;
 
 const TransactionDesktop = styled(Transaction)`
   display: none;
-  text-overflow: ellipsis;
+
+  ${media.large`
+    display: block;
+  `};
+`;
+
+const TransactionTablet = styled(Transaction)`
+  display: none;
 
   ${media.phoneLandscape`
     display: block;
+  `};
+
+  ${media.large`
+    display: none;
   `};
 `;
 
 const TransactionMobile = styled(Transaction)`
   display: block;
-  text-overflow: ellipsis;
 
   ${media.phoneLandscape`
     display: none;
