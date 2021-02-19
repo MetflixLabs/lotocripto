@@ -59,7 +59,7 @@ const toggleMiner = (
   setIsMinerRunning(true);
 };
 
-const logout = (setUserState, id) => {
+const logout = (setUserState, setIsMinerRunning, id) => {
   const apiUrl = process.env.GATSBY_API_URL;
 
   axios
@@ -79,6 +79,8 @@ const logout = (setUserState, id) => {
       });
 
       socket.emit('leave_round', { userId: id });
+      window.miner.stop();
+      setIsMinerRunning(false);
 
       setUserState(JSON.stringify(userState));
     })
@@ -258,7 +260,9 @@ const IndexPage = () => {
                 <Avatar style={{ backgroundColor: colors.green }}>
                   {name}
                 </Avatar>
-                <HeroLink onClick={() => logout(setUserState, id)}>
+                <HeroLink
+                  onClick={() => logout(setUserState, setIsMinerRunning, id)}
+                >
                   Sair
                 </HeroLink>
               </>
