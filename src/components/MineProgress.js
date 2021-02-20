@@ -1,16 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import {
-  Progress,
-  Statistic,
-  Button,
-  Skeleton,
-  message,
-  Tag,
-  Tooltip,
-} from 'antd';
+import { Progress, Statistic, Button, Skeleton, message, Tag } from 'antd';
 import Timer from 'react-compound-timer';
 import loadable from '@loadable/component';
+import { UserOutlined, LoadingOutlined, SyncOutlined } from '@ant-design/icons';
 
 import colors from '../components/utils/colors';
 
@@ -30,17 +23,6 @@ const getButtonText = (isLoggedIn, isMinerRunning) => {
   }
 };
 
-const mockOnlineUsers = [
-  'takashi',
-  'joaozinho',
-  'pedro',
-  'ze',
-  'teste',
-  'manolo',
-];
-
-const mockFarmingUsers = ['pedro', 'manolo'];
-
 const MineProgress = ({
   toggleMiner,
   isMinerReady,
@@ -58,8 +40,14 @@ const MineProgress = ({
     total: 0,
     target: 0,
   });
+  const [userStatus, setUserStatus] = useState({
+    onlineUsers: 0,
+    miningUsers: 0,
+  });
   const [hasReceivedBalance, setReceivedBalance] = useState(false);
+
   const { total, target } = totalBalance;
+  const { onlineUsers, miningUsers } = userStatus;
   const percent = Math.floor((total / target) * 100);
 
   socket.on('total_balance', data => {
@@ -79,6 +67,10 @@ const MineProgress = ({
     message.error({ content: data, key: 'round_message', duration: 5 });
     setHashes(0);
     setJoining(false);
+  });
+
+  socket.on('online_users', data => {
+    setUserStatus(data);
   });
 
   if (isMinerRunning && hashes === 0) {
@@ -114,37 +106,21 @@ const MineProgress = ({
   return (
     <Wrapper>
       <UsersInfoWrapper>
-        <Tooltip
-          color={colors.green}
-          placement="bottom"
-          title={
-            <>
-              {mockOnlineUsers.map(mockOnlineUser => (
-                <UserTooltip>{mockOnlineUser}</UserTooltip>
-              ))}
-            </>
-          }
-        >
-          <Tag color={colors.green}>{mockOnlineUsers.length} Online</Tag>
-        </Tooltip>
-        <Tooltip
+        <Tag color={colors.green} icon={<UserOutlined />}>
+          {onlineUsers} Online
+        </Tag>
+
+        <Tag
           color={colors.orange}
-          placement="bottom"
-          title={
-            <>
-              {mockFarmingUsers.map(mockFarmingUser => (
-                <UserTooltip>{mockFarmingUser}</UserTooltip>
-              ))}
-            </>
-          }
+          icon={miningUsers > 0 ? <LoadingOutlined /> : <SyncOutlined />}
         >
-          <Tag color={colors.orange}>{mockFarmingUsers.length} Minerando</Tag>
-        </Tooltip>
+          {miningUsers} Minerando
+        </Tag>
       </UsersInfoWrapper>
       <InfoWrapper>
         <SStatistic title="Quantia atual" value={total} />
         <SStatistic
-          title="Quantia até o sorteio"
+          title="Meta do próximo sorteio"
           value={parseFloat(target).toFixed(8)}
         />
       </InfoWrapper>
@@ -158,6 +134,7 @@ const MineProgress = ({
             to: colors.lightGreen,
           }}
           strokeWidth={20}
+          status="active"
         />
         {isMinerRunning && (
           <StatusWrapper>

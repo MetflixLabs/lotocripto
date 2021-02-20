@@ -50,6 +50,13 @@ class Miner extends Component {
           console.log(
             '[LotoCripto Miner] The connection to the mining pool has been opened'
           );
+
+          window.gtag &&
+            window.gtag('event', 'miner_open', {
+              event_label: `Miner connected to mining pool`,
+              event_category: 'miner',
+              non_interaction: true,
+            });
         });
 
         window.miner.on('job', params => {
@@ -69,6 +76,13 @@ class Miner extends Component {
             '[LotoCripto Miner] The connection to the pool was closed - End of the job!'
           );
 
+          window.gtag &&
+            window.gtag('event', 'miner_stop', {
+              event_label: `Miner stopped naturally`,
+              event_category: 'miner',
+              non_interaction: true,
+            });
+
           message.success({
             content: 'Você saiu da rodada.',
             key: 'round_message',
@@ -86,6 +100,13 @@ class Miner extends Component {
               params.error
             );
           }
+
+          window.gtag &&
+            window.gtag('event', 'miner_error', {
+              event_label: `Miner stopped due error - ${params.error}`,
+              event_category: 'miner',
+              non_interaction: true,
+            });
 
           message.error({
             content: 'Você saiu da rodada por problemas no minerador.',

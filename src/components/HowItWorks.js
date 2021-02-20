@@ -28,10 +28,10 @@ const HowItWorks = ({ setHowItWorksVisible }) => {
           minerar coletivamente uma criptomoeda (MINTME).
         </Paragraph>
         <Paragraph>
-          Quando a quantia minerada atinge o valor estipulado em "Quantia até o
-          sorteio", um sorteio é realizado entre todos aqueles membros elegíveis
-          a ganharem o prêmio total, e quem for o sorteado, será o vencedor do
-          prêmio.
+          Quando a quantia minerada atinge o valor estipulado em "Meta do
+          próximo sorteio", um sorteio é realizado entre todos aqueles membros
+          elegíveis a ganharem o prêmio total, e quem for o sorteado, será o
+          vencedor do prêmio.
         </Paragraph>
         <Paragraph>
           Você será elegível a ser um dos sorteados após minerar por pelo menos
@@ -60,7 +60,8 @@ const HowItWorks = ({ setHowItWorksVisible }) => {
           A resposta é <strong>não</strong>. Entretanto, ao entrar em uma
           rodada, você estará emprestando um pouco do seu poder computacional
           para minerar a moeda em questão podendo aumentar um pouco o valor da
-          sua conta de luz (baseado no tempo total minerado). Seu único e exclusivo gasto será esse.
+          sua conta de luz (baseado no tempo total minerado). Seu único e
+          exclusivo gasto será esse.
         </Paragraph>
       </BlockWrapper>
       <BlockWrapper>
@@ -70,7 +71,7 @@ const HowItWorks = ({ setHowItWorksVisible }) => {
         <Paragraph>
           A transferência do valor premiado será feita imediatamente após o
           sorteio, isto é, assim que o valor total minerado atingir o valor
-          estipulado em "Quantia até o sorteio".
+          estipulado em "Meta do próximo sorteio".
         </Paragraph>
         <Paragraph>
           O seu nickname será automaticamente adicionado a lista dos "Últimos
