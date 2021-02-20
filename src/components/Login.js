@@ -27,6 +27,13 @@ const submitLogin = (values, setSubmitting, setLoginVisible, setUserState) => {
         .then(res => {
           const { id, name } = res.data.data;
 
+          window.gtag &&
+            window.gtag('event', 'login_success', {
+              event_label: `Login Success`,
+              event_category: 'login',
+              non_interaction: true,
+            });
+
           message.success({
             content: successMessage,
             key: 'login-message',
@@ -56,11 +63,25 @@ const submitLogin = (values, setSubmitting, setLoginVisible, setUserState) => {
             duration: 10,
           });
 
+          window.gtag &&
+            window.gtag('event', 'user_state_fail', {
+              event_label: `User State Fail on Login - ${err.response.data.notification.message}`,
+              event_category: 'userState',
+              non_interaction: true,
+            });
+
           setSubmitting(false);
         });
     })
     .catch(err => {
       const errorMessage = err.response.data.notification.message;
+
+      window.gtag &&
+        window.gtag('event', 'login_fail', {
+          event_label: `Login Fail - ${errorMessage}`,
+          event_category: 'login',
+          non_interaction: true,
+        });
 
       message.error({
         content: errorMessage,

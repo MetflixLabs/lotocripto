@@ -33,6 +33,13 @@ const submitSignup = (
     .then(res => {
       const successMessage = res.data.notification.message;
 
+      window.gtag &&
+        window.gtag('event', 'signup_success', {
+          event_label: 'Signup Success',
+          event_category: 'signup',
+          non_interaction: true,
+        });
+
       message.success({
         content: successMessage,
         key: 'signup-message',
@@ -44,6 +51,13 @@ const submitSignup = (
     })
     .catch(err => {
       const errorMessage = err.response.data.notification.message;
+
+      window.gtag &&
+        window.gtag('event', 'signup_fail', {
+          event_label: `Signup Fail - ${errorMessage}`,
+          event_category: 'signup',
+          non_interaction: true,
+        });
 
       message.error({
         content: errorMessage,
