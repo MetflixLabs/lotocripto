@@ -9,6 +9,7 @@ import {
 } from '@ant-design/icons';
 
 import colors from '../components/utils/colors';
+import media from '../components/utils/media';
 
 const HowItWorks = ({ setHowItWorksVisible }) => {
   return (
@@ -34,8 +35,8 @@ const HowItWorks = ({ setHowItWorksVisible }) => {
           vencedor do prêmio.
         </Paragraph>
         <Paragraph>
-          Você será elegível a ser um dos sorteados após minerar por pelo menos
-          10 minutos.
+          Você se torna elegível a ser um dos sorteados após minerar por pelo
+          menos 10 minutos e permanecer na rodada até seu encerramento.
         </Paragraph>
       </BlockWrapper>
       <BlockWrapper>
@@ -101,6 +102,11 @@ const HowItWorksModal = styled(Modal)`
   .ant-btn-primary {
     display: none;
   }
+
+  ${media.tablet`
+    width: 70% !important;
+    max-width: 865px !important;
+  `};
 `;
 
 const BlockWrapper = styled.div`

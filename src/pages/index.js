@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { navigate } from 'gatsby';
 import styled from 'styled-components';
 import { Avatar, message, Alert } from 'antd';
 import axios from 'axios';
@@ -18,6 +17,7 @@ import Signup from '../components/Signup';
 import Login from '../components/Login';
 import HowItWorks from '../components/HowItWorks';
 import WinnerModal from '../components/WinnerModal';
+import AdBlock from '../components/AdBlock';
 
 const socketUrl = process.env.GATSBY_SOCKET_URL;
 const socket = io.connect(socketUrl, {
@@ -28,11 +28,17 @@ const toggleMiner = (
   isAdblocked,
   isMinerRunning,
   setIsMinerRunning,
+  setAdBlockModalVisible,
   userId
 ) => {
   if (isAdblocked) {
     socket.emit('leave_round', { userId });
-    return navigate('/ad-block');
+    message.error({
+      content: 'Seu AdBlock bloqueou o inicio do minerador',
+      key: 'round_message',
+      duration: 5,
+    });
+    return setAdBlockModalVisible(true);
   }
 
   if (isMinerRunning) {
@@ -109,6 +115,7 @@ const IndexPage = () => {
   const [isLoginVisible, setLoginVisible] = useState(false);
   const [isHowItWorksVisible, setHowItWorksVisible] = useState(false);
   const [isWinnerModalVisible, setWinnerModalVisible] = useState(false);
+  const [isAdBlockModalVisible, setAdBlockModalVisible] = useState(false);
   const [isNoWinnerEligible, setNoWinnerEligible] = useState(false);
   const [winnerNick, setWinnerNick] = useState(false);
   const { isLoggedIn, name, id } = userState;
@@ -233,6 +240,7 @@ const IndexPage = () => {
             winnerNick={`@${winnerNick}`}
           />
         )}
+        {isAdBlockModalVisible && <AdBlock />}
 
         <HeroWrapper>
           <HeroDescriptionWrapper>
@@ -282,6 +290,7 @@ const IndexPage = () => {
                     isAdblocked,
                     isMinerRunning,
                     setIsMinerRunning,
+                    setAdBlockModalVisible,
                     id
                   )
                 }
@@ -406,6 +415,7 @@ const HeroSubTitle = styled.a`
   color: ${colors.mediumGray};
   font-size: 12px;
   line-height: 2px;
+  font-weight: normal;
 
   &:hover {
     color: ${colors.blue};
