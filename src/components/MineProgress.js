@@ -92,7 +92,7 @@ const MineProgress = ({
       message.success({
         content: 'Você está conectado a nossa rede!',
         key: 'waiting_balance',
-        duration: 5,
+        duration: 3,
       });
     }
 
