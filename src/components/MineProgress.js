@@ -134,7 +134,7 @@ const MineProgress = ({
             to: colors.lightGreen,
           }}
           strokeWidth={20}
-          status="active"
+          status={miningUsers > 0 && 'active'}
         />
         {isMinerRunning && (
           <StatusWrapper>
