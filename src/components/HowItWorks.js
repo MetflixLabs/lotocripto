@@ -77,8 +77,11 @@ const HowItWorks = ({ setHowItWorksVisible }) => {
         <Paragraph>
           O seu nickname será automaticamente adicionado a lista dos "Últimos
           vencedores", assim como a quantia ganha e um link do recibo da sua
-          transação na blockchain. O valor vai estar disponível na blockchain
-          imediatamente e pode ser conferido no{' '}
+          transação na blockchain.
+        </Paragraph>
+        <Paragraph>
+          O valor vai estar disponível na blockchain imediatamente e pode ser
+          conferido no{' '}
           <a
             href="https://mintme.com/explorer/"
             target="_blank"
@@ -87,6 +90,8 @@ const HowItWorks = ({ setHowItWorksVisible }) => {
             MINTME Explorer
           </a>
           , bastando informar o endereço da sua carteira no campo de busca.
+        </Paragraph>
+        <Paragraph>
           Quando seu saldo for superior a 1 MINTME, o valor será refletido em
           sua conta no{' '}
           <a
