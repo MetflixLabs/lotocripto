@@ -301,7 +301,7 @@ const IndexPage = () => {
                 socket={socket}
                 userId={id}
               />
-              <Winners />
+              <Winners socket={socket} />
             </SideWrapper>
             <DiscordWrapper>
               <DiscordEmbed

@@ -1,91 +1,78 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Alert, Tag } from 'antd';
+import { Alert, Tag, Skeleton } from 'antd';
+import moment from 'moment';
+import 'moment/locale/pt';
 
 import colors from '../components/utils/colors';
 import media from '../components/utils/media';
 
-const mockWinners = [
-  {
-    date: '02 Fev',
-    name: '@pedrinho',
-    transaction:
-      '0x39f34154152a439e3ee6eefab232b238520cd47676a7e68e9954480b63358fba',
-    amount: 9,
-  },
-  {
-    date: '02 Fev',
-    name: '@augustos',
-    transaction:
-      '0x39f34154152a439e3ee6eefab232b238520cd47676a7e68e9954480b63358fba',
-    amount: 9,
-  },
-  {
-    date: '02 Fev',
-    name: '@juninho',
-    transaction:
-      '0x39f34154152a439e3ee6eefab232b238520cd47676a7e68e9954480b63358fba',
-    amount: 9,
-  },
-  {
-    date: '02 Fev',
-    name: '@joao',
-    transaction:
-      '0x39f34154152a439e3ee6eefab232b238520cd47676a7e68e9954480b63358fba',
-    amount: 9,
-  },
-];
+const Winners = ({ socket }) => {
+  const [winners, setWinners] = useState(false);
 
-const Winners = () => (
-  <Wrapper>
-    <Title>Últimos vencedores</Title>
-    <WinnersWrapper>
-      {mockWinners.length > 0 ? (
-        mockWinners.map(({ date, name, transaction, amount }) => (
-          <WinnerWrapper key={`${name}-${transaction}`}>
-            <Date>{date}</Date>
-            <Nick>{name}</Nick>
-            <TransactionDesktop
-              href={`https://www.mintme.com/explorer/tx/${transaction}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {`${transaction.slice(0, 28)}...`}
-            </TransactionDesktop>
-            <TransactionTablet
-              href={`https://www.mintme.com/explorer/tx/${transaction}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {`${transaction.slice(0, 12)}...`}
-            </TransactionTablet>
-            <TransactionMobile
-              href={`https://www.mintme.com/explorer/tx/${transaction}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {`${transaction.slice(0, 6)}...`}
-            </TransactionMobile>
-            <Tag color="green">
-              <Amount>+{amount} MINTME</Amount>
-            </Tag>
-          </WinnerWrapper>
-        ))
-      ) : (
-        <Alert
-          message="Sem ganhadores por enquanto!"
-          description={
-            <>
-              Participe! Você pode ser o <strong>primeiro</strong> vencedor
-            </>
-          }
-          type="info"
-          showIcon
-        />
-      )}
-    </WinnersWrapper>
-  </Wrapper>
-);
+  socket.on('last_winners', data => {
+    const winners = data.lastWinners.data || [];
+
+    setWinners(winners);
+  });
+
+  return winners ? (
+    <Wrapper>
+      <Title>Últimos vencedores</Title>
+      <WinnersWrapper>
+        {winners.length > 0 ? (
+          winners.map(({ date, name, transactionId, amount }) => (
+            <WinnerWrapper key={`${name}-${transactionId}`}>
+              <Date>
+                {moment(date)
+                  .locale('pt')
+                  .format('DD MMM')}
+              </Date>
+              <Nick>{name}</Nick>
+              <TransactionDesktop
+                href={`https://www.mintme.com/explorer/tx/${transactionId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {`${transactionId.slice(0, 26)}...`}
+              </TransactionDesktop>
+              <TransactionTablet
+                href={`https://www.mintme.com/explorer/tx/${transactionId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {`${transactionId.slice(0, 10)}...`}
+              </TransactionTablet>
+              <TransactionMobile
+                href={`https://www.mintme.com/explorer/tx/${transactionId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {`${transactionId.slice(0, 6)}...`}
+              </TransactionMobile>
+              <Tag color="green">
+                <Amount>+{parseFloat(amount).toFixed(2)} MINTME</Amount>
+              </Tag>
+            </WinnerWrapper>
+          ))
+        ) : (
+          <Alert
+            message="Sem ganhadores por enquanto"
+            description={
+              <>
+                Participe! Você pode ser o <strong>primeiro</strong> vencedor
+              </>
+            }
+            type="info"
+            showIcon
+          />
+        )}
+      </WinnersWrapper>
+    </Wrapper>
+  ) : (
+    <Skeleton active paragraph={{ rows: 6 }} />
+  );
+};
 
 const Wrapper = styled.div`
   display: flex;
@@ -133,6 +120,7 @@ const WinnerWrapper = styled.div`
 
 const Date = styled.div`
   color: ${colors.mediumGray};
+  text-transform: capitalize;
 `;
 
 const Nick = styled.div`
