@@ -125,8 +125,12 @@ const Date = styled.div`
 
 const Nick = styled.div`
   flex: 1;
-  padding: 0 15px;
+  padding: 0px 6px;
   color: ${colors.gray};
+
+  ${media.tablet`
+    padding: 0 15px;
+  `};
 `;
 
 const Transaction = styled.a`
