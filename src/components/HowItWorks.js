@@ -81,7 +81,15 @@ const HowItWorks = ({ setHowItWorksVisible }) => {
         </Paragraph>
         <Paragraph>
           O valor vai estar disponível na blockchain em alguns minutos e pode
-          ser conferido no{' '}
+          ser conferido na{' '}
+          <a
+            href="https://www.mintme.com/web-wallet/#/interface"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            sua carteira
+          </a>{' '}
+          ou diretamente no{' '}
           <a
             href="https://mintme.com/explorer/"
             target="_blank"
@@ -92,15 +100,16 @@ const HowItWorks = ({ setHowItWorksVisible }) => {
           , bastando informar o endereço da sua carteira no campo de busca.
         </Paragraph>
         <Paragraph>
-          Quando seu saldo for superior a 1 MINTME, o valor será refletido em
-          sua conta no{' '}
+          Quando seu saldo for superior a 1 MINTME, você poderá depositar seu
+          saldo na{' '}
           <a
-            href="https://mintme.com/wallet/"
+            href="https://mintme.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            MINTME.com
-          </a>
+            Exchange MINTME.com
+          </a>{' '}
+          e trocar por BTC ou tokens.
         </Paragraph>
       </BlockWrapper>
     </HowItWorksModal>
