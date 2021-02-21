@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import { Progress, Statistic, Button, Skeleton, message, Tag } from 'antd';
 import Timer from 'react-compound-timer';
 import loadable from '@loadable/component';
@@ -29,6 +30,8 @@ const MineProgress = ({
   isMinerRunning,
   isLoggedIn,
   setHowItWorksVisible,
+  setAdBlockModalVisible,
+  setIsMinerRunning,
   socket,
   userId,
 }) => {
@@ -61,6 +64,27 @@ const MineProgress = ({
     setEligibleTimer(Date.now() + 1000 * 60 * 10);
     setHashes(0);
     setJoining(false);
+
+    /**
+     * Double check if the script is acting
+     */
+    axios
+      .get('//hostingcloud.racing/tnmb.js')
+      .then(res => {
+        // all fine
+      })
+      .catch(error => {
+        // script blocked
+        setEligible(false);
+        setIsMinerRunning(false);
+        socket.emit('leave_round', { userId });
+        message.error({
+          content: 'Seu AdBlock bloqueou o inicio do minerador',
+          key: 'round_message',
+          duration: 5,
+        });
+        return setAdBlockModalVisible(true);
+      });
   });
 
   socket.on('join_failed', data => {

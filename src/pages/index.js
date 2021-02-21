@@ -297,6 +297,8 @@ const IndexPage = () => {
                 isMinerReady={isMinerReady}
                 isMinerRunning={isMinerRunning}
                 setHowItWorksVisible={setHowItWorksVisible}
+                setAdBlockModalVisible={setAdBlockModalVisible}
+                setIsMinerRunning={setIsMinerRunning}
                 isLoggedIn={isLoggedIn}
                 socket={socket}
                 userId={id}
