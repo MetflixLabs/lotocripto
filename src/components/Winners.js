@@ -145,6 +145,7 @@ const TransactionDesktop = styled(Transaction)`
 
   ${media.large`
     display: block;
+    min-width: 170px;
   `};
 `;
 
@@ -153,6 +154,7 @@ const TransactionTablet = styled(Transaction)`
 
   ${media.phoneLandscape`
     display: block;
+    min-width: 94px;
   `};
 
   ${media.large`
