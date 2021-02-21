@@ -84,7 +84,7 @@ class Miner extends Component {
             });
 
           message.success({
-            content: 'Você saiu da rodada.',
+            content: 'O minerador foi encerrado e você saiu da rodada.',
             key: 'round_message',
             duration: 5,
           });
