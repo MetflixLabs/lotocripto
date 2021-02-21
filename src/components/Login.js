@@ -74,7 +74,9 @@ const submitLogin = (values, setSubmitting, setLoginVisible, setUserState) => {
         });
     })
     .catch(err => {
-      const errorMessage = err.response.data.notification.message;
+      const errorMessage =
+        err.response?.data?.notification?.message ||
+        'Erro ao efetuar o login. Por favor, tente novamente.';
 
       window.gtag &&
         window.gtag('event', 'login_fail', {
