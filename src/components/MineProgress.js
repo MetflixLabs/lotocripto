@@ -151,7 +151,6 @@ const MineProgress = ({
       <ProgressWrapper>
         <Progress
           percent={percent}
-          showInfo={false}
           trailColor={colors.mediumGray}
           strokeColor={{
             from: colors.green,
@@ -253,6 +252,10 @@ const InfoWrapper = styled.div`
 
 const ProgressWrapper = styled.div`
   width: 100%;
+
+  .ant-progress-text {
+    color: ${colors.mediumGray};
+  }
 `;
 
 const SStatistic = styled(Statistic)`
