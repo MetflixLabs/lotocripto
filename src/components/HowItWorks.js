@@ -80,8 +80,8 @@ const HowItWorks = ({ setHowItWorksVisible }) => {
           transação na blockchain.
         </Paragraph>
         <Paragraph>
-          O valor vai estar disponível na blockchain imediatamente e pode ser
-          conferido no{' '}
+          O valor vai estar disponível na blockchain em alguns minutos e pode
+          ser conferido no{' '}
           <a
             href="https://mintme.com/explorer/"
             target="_blank"
