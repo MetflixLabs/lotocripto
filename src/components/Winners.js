@@ -28,7 +28,7 @@ const Winners = ({ socket }) => {
                   .locale('pt')
                   .format('DD MMM')}
               </Date>
-              <Nick>{name}</Nick>
+              <Nick>@{name}</Nick>
               <TransactionDesktop
                 href={`https://www.mintme.com/explorer/tx/${transactionId}`}
                 target="_blank"
