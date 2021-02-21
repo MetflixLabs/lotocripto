@@ -98,7 +98,7 @@ const Signup = ({ setSignupVisible, setLoginVisible }) => {
             <div>
               Você não poderá alterar seus dados posteriormente. É importante{' '}
               <a
-                href="https://imgur.com/a/VJWPmSZ"
+                href="https://imgur.com/a/rm1AXyU"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -177,7 +177,7 @@ const Signup = ({ setSignupVisible, setLoginVisible }) => {
               message: 'Uma carteira válida de MINTME começa com 0x',
             },
           ]}
-          tooltip="Sua carteira é para onde enviaremos as moedas que você ganhar nos sorteios. Crie uma carteira no site oficial da moeda: mintme.com"
+          tooltip="Sua carteira é para onde enviaremos as moedas que você ganhar nos sorteios. Crie uma carteira aqui: mintme.com/web-wallet/#/"
         >
           <Input
             placeholder="Exemplo: 0x0ef22e4bba275017d15ccb7b3f43a141f20ab3fe"
