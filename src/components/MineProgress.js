@@ -61,7 +61,7 @@ const MineProgress = ({
   socket.on('join_success', data => {
     message.success({ content: data, key: 'round_message', duration: 5 });
     toggleMiner();
-    setEligibleTimer(Date.now() + 1000 * 60 * 10);
+    setEligibleTimer(Date.now() + 1000 * 60 * 20);
     setHashes(0);
     setJoining(false);
 

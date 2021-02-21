@@ -36,7 +36,7 @@ const HowItWorks = ({ setHowItWorksVisible }) => {
         </Paragraph>
         <Paragraph>
           Você se torna elegível a ser um dos sorteados após minerar por pelo
-          menos 10 minutos e permanecer na rodada até seu encerramento.
+          menos 20 minutos e permanecer na rodada até seu encerramento.
         </Paragraph>
       </BlockWrapper>
       <BlockWrapper>
