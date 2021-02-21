@@ -105,6 +105,7 @@ const WinnersWrapper = styled.div`
   width: 100%;
   max-height: 560px;
   overflow: scroll;
+  scrollbar-width: none;
 
   ${media.phoneLandscape`
     width: unset;
