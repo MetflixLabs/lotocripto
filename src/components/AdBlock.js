@@ -50,6 +50,48 @@ const AdBlock = () => {
       </BlockWrapper>
       <BlockWrapper>
         <Title>
+          <StopOutlined /> uBlock Origin
+        </Title>
+        <Paragraph>
+          <Steps progressDot current={4} direction="vertical">
+            <Step title="Clique no ícone do uBlock Origin, localizado à direita da barra de endereços do seu navegador" />
+            <Step title="Um menu drop-down aparecerá na tela" />
+            <Step title="Clique no grande botão ”Power” para desativar o bloqueio do minerador no LotoCripto" />
+            <Step title="Clique em ”Tudo certo!” logo abaixo ou atualize a página" />
+          </Steps>
+        </Paragraph>
+      </BlockWrapper>
+      <BlockWrapper>
+        <Title>
+          <StopOutlined /> Anti minerador do Firefox
+        </Title>
+        <Paragraph>
+          <Steps progressDot current={4} direction="vertical">
+            <Step title="Vá até as configurações do navegador" />
+            <Step title="Encontre o menu “Privacidade e Segurança“" />
+            <Step title="Desmarque a opção “Criptomineradores“" />
+            <Step title="Clique em ”Tudo certo!” logo abaixo ou atualize a página" />
+          </Steps>
+          <Divider />
+        </Paragraph>
+      </BlockWrapper>
+      <BlockWrapper>
+        <Title>
+          <StopOutlined /> Módulo web do Avast
+        </Title>
+        <Paragraph>
+          <Steps progressDot current={5} direction="vertical">
+            <Step title="Vá até as configurações do Avast" />
+            <Step title="Encontre a aba “Proteção“" />
+            <Step title="Clique em “Módulos Principais“" />
+            <Step title="Desmarque a opção “Módulo Internet“" />
+            <Step title="Clique em ”Tudo certo!” logo abaixo ou atualize a página" />
+          </Steps>
+          <Divider />
+        </Paragraph>
+      </BlockWrapper>
+      <BlockWrapper>
+        <Title>
           <StopOutlined /> AdBlock
         </Title>
         <Paragraph>
@@ -75,19 +117,6 @@ const AdBlock = () => {
             <Step title="Clique em ”Tudo certo!” logo abaixo ou atualize a página" />
           </Steps>
           <Divider />
-        </Paragraph>
-      </BlockWrapper>
-      <BlockWrapper>
-        <Title>
-          <StopOutlined /> uBlock Origin
-        </Title>
-        <Paragraph>
-          <Steps progressDot current={4} direction="vertical">
-            <Step title="Clique no ícone do uBlock Origin, localizado à direita da barra de endereços do seu navegador" />
-            <Step title="Um menu drop-down aparecerá na tela" />
-            <Step title="Clique no grande botão ”Power” para desativar o bloqueio do minerador no LotoCripto" />
-            <Step title="Clique em ”Tudo certo!” logo abaixo ou atualize a página" />
-          </Steps>
         </Paragraph>
       </BlockWrapper>
     </AdBlockModal>
