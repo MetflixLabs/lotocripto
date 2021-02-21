@@ -34,7 +34,7 @@ const Winners = ({ socket }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {`${transactionId.slice(0, 26)}...`}
+                {`${transactionId.slice(0, 20)}...`}
               </TransactionDesktop>
               <TransactionTablet
                 href={`https://www.mintme.com/explorer/tx/${transactionId}`}
