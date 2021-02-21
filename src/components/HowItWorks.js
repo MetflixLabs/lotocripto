@@ -77,8 +77,25 @@ const HowItWorks = ({ setHowItWorksVisible }) => {
         <Paragraph>
           O seu nickname será automaticamente adicionado a lista dos "Últimos
           vencedores", assim como a quantia ganha e um link do recibo da sua
-          transação na blockchain. O valor deve cair na sua carteira em
-          aproximadamente 15 minutos.
+          transação na blockchain. O valor vai estar disponível na blockchain
+          imediatamente e pode ser conferido no{' '}
+          <a
+            href="https://mintme.com/explorer/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            MINTME Explorer
+          </a>
+          , bastando informar o endereço da sua carteira no campo de busca.
+          Quando seu saldo for superior a 1 MINTME, o valor será refletido em
+          sua conta no{' '}
+          <a
+            href="https://mintme.com/wallet/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            MINTME.com
+          </a>
         </Paragraph>
       </BlockWrapper>
     </HowItWorksModal>
