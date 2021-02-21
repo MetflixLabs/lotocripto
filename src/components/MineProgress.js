@@ -260,6 +260,10 @@ const ProgressWrapper = styled.div`
 
 const SStatistic = styled(Statistic)`
   margin: 0 20px 0 0;
+
+  .ant-statistic-content {
+    text-align: right;
+  }
 `;
 
 const ButtonWrapper = styled.div`
