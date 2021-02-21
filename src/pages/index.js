@@ -85,7 +85,7 @@ const logout = (setUserState, setIsMinerRunning, id) => {
       });
 
       socket.emit('leave_round', { userId: id });
-      window.miner.stop();
+      window.miner && window.miner.stop();
       setIsMinerRunning(false);
 
       setUserState(JSON.stringify(userState));
