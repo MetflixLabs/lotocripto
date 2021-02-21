@@ -7,6 +7,7 @@ import loadable from '@loadable/component';
 import { UserOutlined, LoadingOutlined, SyncOutlined } from '@ant-design/icons';
 
 import colors from '../components/utils/colors';
+import media from '../components/utils/media';
 
 const MineButton = loadable(() => import('./MineButton'));
 
@@ -260,6 +261,10 @@ const ProgressWrapper = styled.div`
 
 const SStatistic = styled(Statistic)`
   margin: 0 20px 0 0;
+
+  ${media.tablet`
+    margin: 0px 38px 0px 0px;
+  `}
 
   .ant-statistic-content {
     text-align: right;
