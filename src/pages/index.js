@@ -207,8 +207,8 @@ const IndexPage = () => {
             message="A qualquer momento!"
             description={
               <div>
-                A meta para o sorteio foi atingida mas ainda não há um sorteado
-                elegível.{' '}
+                A meta para o sorteio foi atingida mas ainda estamos processando
+                a transação ou não há um sorteado elegível.{' '}
                 <strong>
                   Continue minerando até entrar na rodada e o sorteado pode ser
                   você!
