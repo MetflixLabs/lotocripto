@@ -34,6 +34,7 @@ const MineProgress = ({
   setAdBlockModalVisible,
   setIsMinerRunning,
   setNoWinnerEligible,
+  isNoWinnerEligible,
   socket,
   userId,
 }) => {
@@ -55,7 +56,7 @@ const MineProgress = ({
   const { onlineUsers, miningUsers } = userStatus;
   const percent = Math.floor((total / target) * 100);
 
-  if (percent >= 100) {
+  if (percent >= 100 && !isNoWinnerEligible) {
     setNoWinnerEligible(true);
   }
 
