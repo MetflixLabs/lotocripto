@@ -8,8 +8,10 @@ import media from '../components/utils/media';
 
 const { Step } = Steps;
 
-const AdBlock = () => {
+const AdBlock = ({ socket, id }) => {
   useEffect(() => {
+    socket.emit('leave_round', { userId: id });
+
     window.gtag &&
       window.gtag('event', 'ad_block_modal', {
         event_label: `AdBlock Modal`,

@@ -78,7 +78,7 @@ const MineProgress = ({
         // script blocked
         setEligible(false);
         setIsMinerRunning(false);
-        socket.emit('leave_round', { userId });
+
         message.error({
           content: 'Seu AdBlock bloqueou o inicio do minerador',
           key: 'round_message',
