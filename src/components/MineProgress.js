@@ -58,6 +58,8 @@ const MineProgress = ({
 
   if (percent >= 100 && !isNoWinnerEligible) {
     setNoWinnerEligible(true);
+  } else {
+    setNoWinnerEligible(false);
   }
 
   socket.on('total_balance', data => {
