@@ -29,10 +29,17 @@ const toggleMiner = (
   isMinerRunning,
   setIsMinerRunning,
   setAdBlockModalVisible,
+  isAdBlockModalVisible,
   userId
 ) => {
   if (isAdblocked) {
-    socket.emit('leave_round', { userId });
+    /**
+     * Only emit leave_round if modal is not showing up (trying to avoid spamming the emit event)
+     */
+    if (!isAdBlockModalVisible) {
+      socket.emit('leave_round', { userId });
+    }
+
     message.error({
       content: 'Seu AdBlock bloqueou o inicio do minerador',
       key: 'round_message',
@@ -291,6 +298,7 @@ const IndexPage = () => {
                     isMinerRunning,
                     setIsMinerRunning,
                     setAdBlockModalVisible,
+                    isAdBlockModalVisible,
                     id
                   )
                 }
