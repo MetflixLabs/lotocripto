@@ -18,7 +18,7 @@ const Winners = ({ socket }) => {
 
   return winners ? (
     <Wrapper>
-      <Title>Últimos vencedores</Title>
+      <Title>Últimos 10 Vencedores</Title>
       <WinnersWrapper>
         {winners.length > 0 ? (
           winners.map(({ date, name, transactionId, amount }) => (
