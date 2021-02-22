@@ -33,8 +33,6 @@ const MineProgress = ({
   setHowItWorksVisible,
   setAdBlockModalVisible,
   setIsMinerRunning,
-  setNoWinnerEligible,
-  isNoWinnerEligible,
   socket,
   userId,
 }) => {
@@ -55,12 +53,6 @@ const MineProgress = ({
   const { total, target } = totalBalance;
   const { onlineUsers, miningUsers } = userStatus;
   const percent = Math.floor((total / target) * 100);
-
-  if (percent >= 100 && !isNoWinnerEligible) {
-    setNoWinnerEligible(true);
-  } else {
-    setNoWinnerEligible(false);
-  }
 
   socket.on('total_balance', data => {
     setReceivedBalance(true);

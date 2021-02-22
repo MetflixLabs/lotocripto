@@ -307,8 +307,6 @@ const IndexPage = () => {
                 setHowItWorksVisible={setHowItWorksVisible}
                 setAdBlockModalVisible={setAdBlockModalVisible}
                 setIsMinerRunning={setIsMinerRunning}
-                setNoWinnerEligible={setNoWinnerEligible}
-                isNoWinnerEligible={isNoWinnerEligible}
                 isLoggedIn={isLoggedIn}
                 socket={socket}
                 userId={id}
