@@ -229,6 +229,8 @@ const IndexPage = () => {
           <Login
             setLoginVisible={setLoginVisible}
             setUserState={setUserState}
+            socket={socket}
+            userId={id}
           />
         )}
         {isHowItWorksVisible && (

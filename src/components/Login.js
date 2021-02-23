@@ -6,7 +6,14 @@ import { LockOutlined } from '@ant-design/icons';
 
 import colors from '../components/utils/colors';
 
-const submitLogin = (values, setSubmitting, setLoginVisible, setUserState) => {
+const submitLogin = (
+  values,
+  setSubmitting,
+  setLoginVisible,
+  setUserState,
+  socket,
+  userId
+) => {
   const apiUrl = process.env.GATSBY_API_URL;
   const { name, password } = values;
 
@@ -54,6 +61,7 @@ const submitLogin = (values, setSubmitting, setLoginVisible, setUserState) => {
 
           setUserState(userState);
           setLoginVisible(false);
+          socket.emit('leave_round', { userId });
         })
         .catch(err => {
           message.error({
@@ -95,7 +103,7 @@ const submitLogin = (values, setSubmitting, setLoginVisible, setUserState) => {
     });
 };
 
-const Login = ({ setLoginVisible, setUserState }) => {
+const Login = ({ setLoginVisible, setUserState, socket, userId }) => {
   const [form] = Form.useForm();
   const [isSubmitting, setSubmitting] = useState(false);
 
@@ -120,7 +128,14 @@ const Login = ({ setLoginVisible, setUserState }) => {
         layout="vertical"
         requiredMark
         onFinish={values =>
-          submitLogin(values, setSubmitting, setLoginVisible, setUserState)
+          submitLogin(
+            values,
+            setSubmitting,
+            setLoginVisible,
+            setUserState,
+            socket,
+            userId
+          )
         }
       >
         <Form.Item
