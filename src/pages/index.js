@@ -117,7 +117,6 @@ const IndexPage = () => {
   const [isWinnerModalVisible, setWinnerModalVisible] = useState(false);
   const [isAdBlockModalVisible, setAdBlockModalVisible] = useState(false);
   const [isNoWinnerEligible, setNoWinnerEligible] = useState(false);
-  const [isServerRestartVisible, setServerRestartVisible] = useState(false);
   const [winnerNick, setWinnerNick] = useState(false);
   const { isLoggedIn, name, id } = userState;
 
@@ -192,9 +191,7 @@ const IndexPage = () => {
   });
 
   socket.on('server_restart', data => {
-    if (!isServerRestartVisible) {
-      setServerRestartVisible(true);
-    }
+    typeof window !== 'undefined' && window.location.reload();
   });
 
   return (
@@ -211,19 +208,6 @@ const IndexPage = () => {
       )}
       <SEO title="LotoCripto - Minere e concorra!" />
       <Wrapper>
-        {isServerRestartVisible && (
-          <Alert
-            message="Atenção: o servidor foi atualizado"
-            description={
-              <div>
-                Para a sua segurança, por favor atualize a página e entre na
-                rodada novamente.
-              </div>
-            }
-            type="warning"
-            showIcon
-          />
-        )}
         {isNoWinnerEligible && (
           <Alert
             message="A qualquer momento!"
