@@ -33,6 +33,8 @@ const MineProgress = ({
   setHowItWorksVisible,
   setAdBlockModalVisible,
   setIsMinerRunning,
+  wasServerRestarted,
+  setServerRestarted,
   socket,
   userId,
 }) => {
@@ -209,6 +211,7 @@ const MineProgress = ({
             onClickAction={() => {
               if (!isMinerRunning) {
                 setJoining(true);
+                !wasServerRestarted && setServerRestarted(false);
                 socket.emit('join_round', { userId });
                 message.loading({
                   content: 'Entrando na rodada...',

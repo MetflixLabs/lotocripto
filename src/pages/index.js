@@ -221,10 +221,11 @@ const IndexPage = () => {
       )}
       <SEO title="LotoCripto - Minere e concorra!" />
       <Wrapper>
-        {wasServerRestarted && !isMinerRunning && (
+        {wasServerRestarted && (
           <Alert
             message="Atenção: o servidor foi atualizado"
             closable
+            onClose={() => setServerRestarted(false)}
             description={
               <div>
                 Seu minerador foi encerrado e você já pode voltar a minerar
@@ -334,6 +335,8 @@ const IndexPage = () => {
                 setHowItWorksVisible={setHowItWorksVisible}
                 setAdBlockModalVisible={setAdBlockModalVisible}
                 setIsMinerRunning={setIsMinerRunning}
+                wasServerRestarted={wasServerRestarted}
+                setServerRestarted={setServerRestarted}
                 isLoggedIn={isLoggedIn}
                 socket={socket}
                 userId={id}
