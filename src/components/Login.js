@@ -11,8 +11,7 @@ const submitLogin = (
   setSubmitting,
   setLoginVisible,
   setUserState,
-  socket,
-  userId
+  socket
 ) => {
   const apiUrl = process.env.GATSBY_API_URL;
   const { name, password } = values;
@@ -61,7 +60,7 @@ const submitLogin = (
 
           setUserState(userState);
           setLoginVisible(false);
-          socket.emit('leave_round', { userId });
+          socket.emit('leave_round', { userId: id });
         })
         .catch(err => {
           message.error({
@@ -103,7 +102,7 @@ const submitLogin = (
     });
 };
 
-const Login = ({ setLoginVisible, setUserState, socket, userId }) => {
+const Login = ({ setLoginVisible, setUserState, socket }) => {
   const [form] = Form.useForm();
   const [isSubmitting, setSubmitting] = useState(false);
 
@@ -133,8 +132,7 @@ const Login = ({ setLoginVisible, setUserState, socket, userId }) => {
             setSubmitting,
             setLoginVisible,
             setUserState,
-            socket,
-            userId
+            socket
           )
         }
       >
