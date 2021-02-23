@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Avatar, message, Alert } from 'antd';
+import { Avatar, message, Alert, notification } from 'antd';
 import axios from 'axios';
 import io from 'socket.io-client';
 import { isEmpty } from 'lodash';
@@ -117,7 +117,6 @@ const IndexPage = () => {
   const [isWinnerModalVisible, setWinnerModalVisible] = useState(false);
   const [isAdBlockModalVisible, setAdBlockModalVisible] = useState(false);
   const [isNoWinnerEligible, setNoWinnerEligible] = useState(false);
-  const [wasServerRestarted, setServerRestarted] = useState(false);
   const [winnerNick, setWinnerNick] = useState(false);
   const { isLoggedIn, name, id } = userState;
 
@@ -183,7 +182,15 @@ const IndexPage = () => {
 
     if (serverRestarted) {
       localStorage.removeItem('lotocripto-server-restarted');
-      setServerRestarted(true);
+
+      notification.warning({
+        key: 'server-restart-notification',
+        message: 'Atenção: o servidor foi atualizado',
+        description:
+          'Seu minerador foi encerrado e você já pode voltar a minerar normalmente.',
+        duration: 0,
+        placement: 'topLeft',
+      });
     }
   }, []);
 
@@ -221,21 +228,6 @@ const IndexPage = () => {
       )}
       <SEO title="LotoCripto - Minere e concorra!" />
       <Wrapper>
-        {wasServerRestarted && (
-          <Alert
-            message="Atenção: o servidor foi atualizado"
-            closable
-            onClose={() => setServerRestarted(false)}
-            description={
-              <div>
-                Seu minerador foi encerrado e você já pode voltar a minerar
-                normalmente.
-              </div>
-            }
-            type="warning"
-            showIcon
-          />
-        )}
         {isNoWinnerEligible && (
           <Alert
             message="A qualquer momento!"
@@ -335,8 +327,6 @@ const IndexPage = () => {
                 setHowItWorksVisible={setHowItWorksVisible}
                 setAdBlockModalVisible={setAdBlockModalVisible}
                 setIsMinerRunning={setIsMinerRunning}
-                wasServerRestarted={wasServerRestarted}
-                setServerRestarted={setServerRestarted}
                 isLoggedIn={isLoggedIn}
                 socket={socket}
                 userId={id}

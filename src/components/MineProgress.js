@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { Progress, Statistic, Button, Skeleton, message, Tag } from 'antd';
+import {
+  Progress,
+  Statistic,
+  Button,
+  Skeleton,
+  message,
+  Tag,
+  notification,
+} from 'antd';
 import Timer from 'react-compound-timer';
 import loadable from '@loadable/component';
 import { UserOutlined, LoadingOutlined, SyncOutlined } from '@ant-design/icons';
@@ -33,8 +41,6 @@ const MineProgress = ({
   setHowItWorksVisible,
   setAdBlockModalVisible,
   setIsMinerRunning,
-  wasServerRestarted,
-  setServerRestarted,
   socket,
   userId,
 }) => {
@@ -211,7 +217,7 @@ const MineProgress = ({
             onClickAction={() => {
               if (!isMinerRunning) {
                 setJoining(true);
-                !wasServerRestarted && setServerRestarted(false);
+                notification.close('server-restart-notification');
                 socket.emit('join_round', { userId });
                 message.loading({
                   content: 'Entrando na rodada...',
