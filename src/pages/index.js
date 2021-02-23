@@ -191,6 +191,7 @@ const IndexPage = () => {
   });
 
   socket.on('server_restart', data => {
+    socket.emit('leave_round', { userId: id });
     typeof window !== 'undefined' && window.location.reload();
   });
 
