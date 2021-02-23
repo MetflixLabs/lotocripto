@@ -192,14 +192,16 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      <Miner
-        setIsMinerReady={setIsMinerReady}
-        setIsMinerRunning={setIsMinerRunning}
-        setIsAdblocked={setIsAdblocked}
-        name={name}
-        id={id}
-        socket={socket}
-      />
+      {id && (
+        <Miner
+          setIsMinerReady={setIsMinerReady}
+          setIsMinerRunning={setIsMinerRunning}
+          setIsAdblocked={setIsAdblocked}
+          name={name}
+          id={id}
+          socket={socket}
+        />
+      )}
       <SEO title="LotoCripto - Minere e concorra!" />
       <Wrapper>
         {isNoWinnerEligible && (

@@ -18,7 +18,7 @@ const MineButton = ({
     isMinerRunning={isMinerRunning}
     disabled={!isLoggedIn}
     onClick={() => onClickAction()}
-    loading={!isMinerReady || isJoining}
+    loading={(!isMinerReady && isLoggedIn) || isJoining}
   >
     {children}
   </Wrapper>
