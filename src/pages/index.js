@@ -117,6 +117,7 @@ const IndexPage = () => {
   const [isWinnerModalVisible, setWinnerModalVisible] = useState(false);
   const [isAdBlockModalVisible, setAdBlockModalVisible] = useState(false);
   const [isNoWinnerEligible, setNoWinnerEligible] = useState(false);
+  const [wasServerRestarted, setServerRestarted] = useState(false);
   const [winnerNick, setWinnerNick] = useState(false);
   const { isLoggedIn, name, id } = userState;
 
@@ -175,6 +176,15 @@ const IndexPage = () => {
           );
         setUserState(JSON.stringify(userState));
       });
+
+    const serverRestarted =
+      typeof window !== 'undefined' &&
+      localStorage.getItem('lotocripto-server-restarted');
+
+    if (serverRestarted) {
+      localStorage.removeItem('lotocripto-server-restarted');
+      setServerRestarted(true);
+    }
   }, []);
 
   socket.on('round_winner', data => {
@@ -191,7 +201,10 @@ const IndexPage = () => {
   });
 
   socket.on('server_restart', data => {
-    typeof window !== 'undefined' && window.location.reload();
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('lotocripto-server-restarted', true);
+      window.location.reload();
+    }
   });
 
   return (
@@ -208,6 +221,20 @@ const IndexPage = () => {
       )}
       <SEO title="LotoCripto - Minere e concorra!" />
       <Wrapper>
+        {wasServerRestarted && !isMinerRunning && (
+          <Alert
+            message="Atenção: o servidor foi atualizado"
+            closable
+            description={
+              <div>
+                Seu minerador foi encerrado e você já pode voltar a minerar
+                normalmente.
+              </div>
+            }
+            type="warning"
+            showIcon
+          />
+        )}
         {isNoWinnerEligible && (
           <Alert
             message="A qualquer momento!"
