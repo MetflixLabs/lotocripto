@@ -117,6 +117,7 @@ const IndexPage = () => {
   const [isWinnerModalVisible, setWinnerModalVisible] = useState(false);
   const [isAdBlockModalVisible, setAdBlockModalVisible] = useState(false);
   const [isNoWinnerEligible, setNoWinnerEligible] = useState(false);
+  const [specialNotification, setSpecialNotification] = useState({});
   const [winnerNick, setWinnerNick] = useState(false);
   const { isLoggedIn, name, id } = userState;
 
@@ -214,6 +215,10 @@ const IndexPage = () => {
     }
   });
 
+  socket.on('special_notification', data => {
+    setSpecialNotification(data);
+  });
+
   return (
     <Layout>
       {id && (
@@ -228,6 +233,14 @@ const IndexPage = () => {
       )}
       <SEO title="LotoCripto - Minere e concorra!" />
       <Wrapper>
+        {!isEmpty(specialNotification) && (
+          <Alert
+            message={specialNotification?.title}
+            description={<div>{specialNotification?.description}</div>}
+            type="info"
+            showIcon
+          />
+        )}
         {isNoWinnerEligible && (
           <Alert
             message="A qualquer momento!"
