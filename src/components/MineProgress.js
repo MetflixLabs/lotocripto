@@ -63,6 +63,7 @@ const MineProgress = ({
   /**
    * April 1st
    */
+  onlineUsers = onlineUsers + 10421;
   miningUsers = miningUsers + 10421;
   const percent = Math.floor((total / target) * 100);
 
