@@ -59,7 +59,11 @@ const MineProgress = ({
   const [hasReceivedBalance, setReceivedBalance] = useState(false);
 
   const { total, target } = totalBalance;
-  const { onlineUsers, miningUsers } = userStatus;
+  let { onlineUsers, miningUsers } = userStatus;
+  /**
+   * April 1st
+   */
+  miningUsers = miningUsers + 10421;
   const percent = Math.floor((total / target) * 100);
 
   socket.on('total_balance', data => {
